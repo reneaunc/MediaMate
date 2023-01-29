@@ -1,5 +1,5 @@
 import React from "react";
-import './Feed.module.css';
+import styles from './Feed.module.css';
 import Post from "../Post/Post";
 
 function Feed(props) {
@@ -7,9 +7,11 @@ function Feed(props) {
     return (
         <>
         <h1>Feed</h1>
-        {props.posts.map((cur)=> {
-            return <Post curPost={cur} />
-        })}
+        <div className={styles.feedArea}>
+            {props.posts.map((cur)=> {
+                return <Post curPost={cur} />
+            })}
+        </div>
         
         </>
     )

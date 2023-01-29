@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    border-radius: 10px;
+    border-radius: 1em;
     overflow: hidden;
     margin-top: 0;
     width: 100%;
@@ -15,11 +15,40 @@
     width: 50%;
 }
 
+.cardDetails {
+    width: 50%;
+    text-align: center;
+    padding: 1em;
+}
+
+.title {
+    text-align: center;
+}
+
 
 .userName {
-    margin-bottom: 5px;
     text-align: left;
+    display: inline-block;
 
+}
+
+.topInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.topInfo * {
+    margin: 10px 15px;
+
+}
+
+.date {
+    display: inline-block;
+    height: fit-content;
+    opacity: 50%;
 }
 
 .fullPost {
@@ -27,3 +56,4 @@
     padding: 2em;
 
 }
+
