@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0;
+    width: 100%;
+
+    background-color: white;
+    
+}
+
+.card img {
+    width: 50%;
+}
+
+
+.userName {
+    margin-bottom: 5px;
+    text-align: left;
+
+}
+
+.fullPost {
+    width: 45%;
+    padding: 2em;
+
+}
