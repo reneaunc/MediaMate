@@ -1,5 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './../App/App.css';
+import './login.css';
+import Landing from '../Landing/Landing';
+import LandingNavBar from '../LandingNavBar/LandingNavBar';
+import LandingFooter from '../LandingFooter/LandingFooter';
 
 export default class login extends Component {
     constructor(props) {
@@ -35,30 +40,44 @@ export default class login extends Component {
     render() {
         return (
             <div>
-                <div class="container border border-5 border-dark border-top-0 w-25 pb-5 bg-dark text-light shadow-lg">
-                    <h2 class="text-center">Log-In</h2>
-                    <form onSubmit={this.checkUserInput}>
-                        <div class="mb-3 mt-3">
-                            <label for="username" class="form-label">User name:</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" value={this.state.username} onChange={this.handleUsernameChange} />
+                <LandingNavBar/>
+                <Landing/>
+                <div>
+                    <div className="row">
+                        <div className="col g-0 pe-5" id="panelleft">
                         </div>
+                        
+                        <div className="col border border-5 border-dark border-top-0 pb-5 bg-dark text-light shadow-lg">
+                            <h2 className="text-center">Log-In</h2>
+                            <form onSubmit={this.checkUserInput}>
+                                <div className="mb-3 mt-3">
+                                    <label for="username" className="form-label">User name:</label>
+                                    <input type="text" className="form-control" id="username" placeholder="Enter username" name="username" value={this.state.username} onChange={this.handleUsernameChange} />
+                                </div>
 
-                        <div class="mb-3">
-                            <label for="userPass" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="userPass" placeholder="Enter password" name="userPass" value={this.state.password} onChange={this.handlePasswordChange} />
+                                <div className="mb-3">
+                                    <label for="userPass" className="form-label">Password:</label>
+                                    <input type="password" className="form-control" id="userPass" placeholder="Enter password" name="userPass" value={this.state.password} onChange={this.handlePasswordChange} />
+                                </div>
+                                <div className="text-center">
+
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                            <hr />
+                            <h3 className="text-center">No account?</h3>
+                            <div className="d-flex justify-content-center"> 
+                                
+                                <a href="register.php"><button type="button" className="btn btn-primary" id="registration" >Register</button></a>
+                            </div>
                         </div>
-                        <div class="text-center">
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                        
+                        
+                        <div className="col" id="panelright">
                         </div>
-                    </form>
-                    <hr />
-                    <h3 class="text-center">No account?</h3>
-                    <div class="d-flex justify-content-center">
-
-                        <a href="register.php"><button type="button" class="btn btn-primary" id="registration" >Register</button></a>
                     </div>
                 </div>
+                <LandingFooter/>
             </div>
         )
     }
