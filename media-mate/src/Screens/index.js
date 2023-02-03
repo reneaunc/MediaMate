@@ -1,13 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
-export const ConsumedMedia = () => {
+export default function ConsumedMedia () {
 
     const [ input, setInput ] = useState('');
     const [ output, setOutput ] = useState();
 
     const [ out, setOut ] = useState([]);
-    const [ media, setMedia ] = useState([]);
+    const [ media, setMedia ] = useState(0);
 
     const submitForm = async (e) => {
         e.preventDefault();
@@ -39,10 +40,23 @@ export const ConsumedMedia = () => {
          }
     }
 
-    const test = [{title: 'movie1', runtime: 120}, {title: 'movie2', runtime: 90}];
+    const db = [{title: 'movie1', runtime: 120}, {title: 'movie2', runtime: 90}];
 
-    const getMedia = () => {
-        setMedia(test);
+    let myMedia = [];
+
+    const addMedia = (selected) => {
+        myMedia.push(db[selected])
+    }
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setMedia(e.target.value);
+    };
+
+    let navigate = useNavigate(); 
+    const changeRoute = () =>{ 
+        let path = `../createreview`; 
+        navigate(path);
     }
 
     return (
@@ -50,14 +64,14 @@ export const ConsumedMedia = () => {
             <section>
             <FormControl style={{minWidth: 240}}>
                 <InputLabel>Select Movie</InputLabel>
-                <Select label="Select Movie">
-                {media.map((row, i) => (
+                <Select label="Select Movie" onChange={handleChange}>
+                {db.map((row, i) => (
                     <MenuItem value={i}> {row.title} </MenuItem>
                 ))}
                 </Select>
             </FormControl>
-            <Button variant="contained" color="success">Add Media</Button>
-            <Button variant="contained" onClick={getMedia}>Database</Button>
+            <Button variant="contained" onClick={addMedia(media)}>Add Media</Button>
+            <Button variant="contained" color="success" onClick={changeRoute}>Create Review</Button>
             </section>
             <section>
                 <TableContainer component={Paper}>
@@ -70,7 +84,7 @@ export const ConsumedMedia = () => {
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {media.map((row, i) => (
+                        {myMedia.map((row, i) => (
                             <TableRow
                             key={i}
                             >
