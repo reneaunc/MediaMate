@@ -1,15 +1,38 @@
 .layout {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
 
 }
 
 .layout img {
     height: 50vh;
+    margin-right: 5em;
+    border-radius: 1em;
 }
 
 .contactInfo {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactInfo * {
+    margin: 1em;
+    padding: 1em 2em;
+    border-radius: 1em;
+    background-color: #E3E6E7;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.contactInfo *:hover {
+    background-color: #c9ccce;
+}
+
+.header {
+    height: 30vh;
+    width: 100%;
 }
