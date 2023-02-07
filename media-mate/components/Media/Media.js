@@ -8,9 +8,6 @@ class Media extends React.Component {
         const {media} = this.props;
         return (
             <div className = "Media">
-                <div className="image-container">
-                    <img src='https://csciprojects.us/pizza.jpg' alt=''/>
-                </div>
                 <h2>{media.name}</h2>
                 <div className="Media-information">
                     <div className="Media-reviews">
