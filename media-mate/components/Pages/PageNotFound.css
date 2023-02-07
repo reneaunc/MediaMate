@@ -1,0 +1,31 @@
+.PageNotFound{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 80vh;
+  }
+  
+  .PageNotFound {
+    
+    vertical-align: middle;
+    text-align: center;
+    transform: translate3d(0, 0, 0);
+  }
+  .PageNotFound:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+  }
+  
+  .scene {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .text {
+    color: #252525;
+    font-size: 2em;
+    font-weight: bold;
+  }

@@ -1,0 +1,45 @@
+/* Universal Styles */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400&display=swap');
+html {
+  font-size: 18px;
+  font-family: 'Manrope', sans-serif;
+}
+
+@media only screen and (max-width: 560px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Reusable Component - Image Container */
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  background: #000;
+}
+
+.image-container img {
+  width: 100%;
+}
+
+/* App Styles */
+
+.App {
+  font-family: 'Manrope', sans-serif;
+}
+
+h1 {
+  padding: .66rem 0;
+  text-align: center;
+  background-color: #1f11ff;
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 0;
+}
