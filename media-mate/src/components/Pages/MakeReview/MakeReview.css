@@ -1,0 +1,65 @@
+.MakeReview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 25rem;
+  }
+  
+  .MakeReview-fields {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.88rem;
+  }
+  
+  .MakeReview-fields input {
+    width: 21rem;
+    padding: .66rem 1rem;
+    margin-right: 2.22rem;
+    border: 1px solid #5af;
+    border-radius: 40px;
+    font-size: .77rem;
+    font-weight: 500;
+  }
+  
+  .MakeReview-fields input:last-child {
+    margin-right: 0;
+  }
+  
+  .MakeReview-submit {
+    text-align: center;
+  }
+  
+  .MakeReview-submit a {
+    border-radius: 4px;
+    padding: .72rem 1.7rem;
+    background-color: #cca353;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color .5s;
+  }
+  
+  .MakeReview-submit a:hover {
+    cursor: pointer;
+    background-color: #a7874b;
+  }
+  
+  @media only screen and (max-width: 560px) {
+    .SearchBar {
+      background-image: url('../../../../../../background_search_mobile.jpg');
+    }
+  
+    .SearchBar-sort-options ul {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
+  
+    .SearchBar-fields {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .SearchBar-fields input {
+      margin-right: 0;
+      margin-bottom: .86rem;
+    }
+  }
