@@ -2,12 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 
 import Movies from './util/Movies';
+import Games from './util/Games';
+import Books from './util/Books';
 
 
 
 function App() {
 
   const movies =  new Movies();
+  const games = new Games();
+  const books = new Books();
 
   return (
     <div className="App">
@@ -24,7 +28,8 @@ function App() {
         >
           Learn React
         </a>
-        <button onClick={movies.searchMovie("shrek")}>hello</button>
+        {/*<button onClick={movies.searchMovie("shrek")}>hello</button>*/}
+        <button onClick={books.getBook('harry potter')}>hello</button>
       </header>
     </div>
   );
