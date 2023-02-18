@@ -3,7 +3,7 @@ import './App.css';
 import Landing from '../Landing/Landing';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import LandingFooter from '../LandingFooter/LandingFooter';
-import Login from '../Login/Login';
+import Login from '../Login/login.js';
 import MediaInfo from "../Pages/MediaInfo/MediaInfo";
 import Registration from '../Registration/Registration';
 import Library from '../Pages/Library/Library';

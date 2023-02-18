@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './../App/App.css';
-import './Login.css';
+import './login.css';
 import Landing from '../Landing/Landing';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import LandingFooter from '../LandingFooter/LandingFooter';
