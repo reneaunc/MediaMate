@@ -1,0 +1,58 @@
+.card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-radius: 1em;
+    overflow: hidden;
+    margin-top: 0;
+    width: 100%;
+
+    background-color: white;
+
+}
+
+.card img {
+    width: 50%;
+}
+
+.cardDetails {
+    width: 50%;
+    text-align: center;
+    padding: 1em;
+}
+
+.title {
+    text-align: center;
+}
+
+
+.userName {
+    text-align: left;
+    display: inline-block;
+
+}
+
+.topInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.topInfo * {
+    margin: 10px 15px;
+
+}
+
+.date {
+    display: inline-block;
+    height: fit-content;
+    opacity: 50%;
+}
+
+.fullPost {
+    width: 45%;
+    padding: 2em;
+
+}

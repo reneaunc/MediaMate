@@ -1,0 +1,12 @@
+#panelleft {
+    background-image: url(/public/vgame_left.jpg);
+    background-position: center;
+    background-size: cover;
+
+}
+
+#panelright {
+    background-image: url(/public/movie_right.jpg);
+    background-position: center;
+    background-size: cover;
+}
