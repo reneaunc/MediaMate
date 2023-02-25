@@ -1,4 +1,4 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './../App/App.css';
 import './login.css';
@@ -37,6 +37,7 @@ export default class Login extends Component {
         }
     }
 
+    
     render() {
         return (
             <div>
@@ -81,4 +82,6 @@ export default class Login extends Component {
             </div>
         )
     }
+
+
 }
