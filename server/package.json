@@ -11,5 +11,10 @@
     "mongoose": "^6.10.0",
     "nodemon": "^2.0.20",
     "react-redux": "^8.0.5"
+  },
+  "scripts": {
+    "server": "node server.js",
+    "media-mate": "npm run start --prefix ../media-mate",
+    "dev": "concurrently \"npm run server\" \"npm run media-mate\""
   }
 }
