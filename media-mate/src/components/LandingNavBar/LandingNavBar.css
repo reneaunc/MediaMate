@@ -37,3 +37,7 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+
+.LandingNavBar {
+    background-image: url('../../../public/bookshelf.jpg');
+}
