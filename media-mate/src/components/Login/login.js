@@ -1,5 +1,6 @@
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import './../App/App.css';
 import './login.css';
 import Landing from '../Landing/Landing';
@@ -69,7 +70,7 @@ export default class Login extends Component {
                             <h3 className="text-center">No account?</h3>
                             <div className="d-flex justify-content-center"> 
                                 
-                                <a href="register.php"><button type="button" className="btn btn-primary" id="registration" >Register</button></a>
+                                <Link to="/signup"><button type="button" className="btn btn-primary" id="registration" >Register</button></Link>
                             </div>
                         </div>
                         
