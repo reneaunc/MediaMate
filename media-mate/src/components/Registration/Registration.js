@@ -19,12 +19,45 @@ const Register = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        if (!email) {
+            return alert("email is required!");
+        }
+        if (!username) {
+            return alert("Username is required!");
+        }
+
+        if(username.length < 3) {
+            return alert("Username must be at least 3 characters long")
+        }
+
+        if (!password) {
+            return alert("password is required!");
+        }
+
+        if(password.length < 4 || password.length > 10) {
+            return alert("password must be at length of 4-10 characters long");
+        }
+
+        if(password.includes("(") || password.includes(")") || password.includes("[") || password.includes("]") 
+        || password.includes(".") || password.includes("{") || password.includes("}")) {
+            return alert("your password cannot include these set of characters: ( ) [ ] . { }")
+        }
+
+        if(!confirmPassword) {
+            return alert("Please re-enter your password!");
+        }
+
+        if(confirmPassword !== password) {
+            return alert("please make sure your confirm password match the original password")
+        }
+
         fetch('/api/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password, confirmPassword}),
+            body: JSON.stringify({ username, email, password, confirmPassword }),
         })
             .then(res => res.json())
             .then(data => {
@@ -32,7 +65,7 @@ const Register = () => {
                     // getting user email from response if successful.
                     const { email = '', username = '' } = data.data.User;
                     // setting user to the redux store
-                    dispatch(login({ username, email}));
+                    dispatch(login({ username, email }));
                     //localStorage.setItem('user', JSON.stringify(data.data.user));
                     navigate('/login', { replace: true });
                     console.log(data.message);
@@ -42,10 +75,10 @@ const Register = () => {
             })
             .catch(err => { })
     };
-    
+
     return (
         <div>
-            <Landing/>
+            <Landing />
             <LandingNavBar />
             <div className="row">
                 <div className="col g-0 pe-5" id="panelleft">
@@ -57,7 +90,7 @@ const Register = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3 mt-3">
                             <label for="userMail" className="form-label">Email:</label>
-                            <input type="email" className="form-control" id="userMail" placeholder="Enter email" name="userMail" onChange={(e) => setEmail(e.target.value)}/>
+                            <input type="email" className="form-control" id="userMail" placeholder="Enter email" name="userMail" onChange={(e) => setEmail(e.target.value)} />
                         </div>
 
                         <div className="mb-3">
@@ -70,15 +103,15 @@ const Register = () => {
 
                         <div className="mb-3">
                             <label for="userPass" className="form-label">Password:</label>
-                            <input type="password" className="form-control" id="userPass" placeholder="Enter password" aria-describedby="passwordHelpBlock" name="userPass" onChange={(e) => setPassword(e.target.value)}/>
+                            <input type="password" className="form-control" id="userPass" placeholder="Enter password" aria-describedby="passwordHelpBlock" name="userPass" onChange={(e) => setPassword(e.target.value)} />
                             <div id="passwordHelpBlock" className="form-text text-light">
-                                Your password must be 4-10 characters long, contain letters and numbers, and must must not contain character ( ) [ ] . { } or emoji.
+                                Your password must be 4-10 characters long, contain letters and numbers, and must must not contain character ( ) [ ] . { } in the password
                             </div>
                         </div>
 
                         <div className="mb-3">
                             <label for="passCheck" className="form-label">Password again:</label>
-                            <input type="password" className="form-control" id="passCheck" placeholder="Enter password again" name="passCheck" onChange={(e) => setPasswordAgain(e.target.value)}/>
+                            <input type="password" className="form-control" id="passCheck" placeholder="Enter password again" name="passCheck" onChange={(e) => setPasswordAgain(e.target.value)} />
                         </div>
 
 

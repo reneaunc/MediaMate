@@ -90,6 +90,61 @@ app.post('/api/signup', function (req, res) {
   
  })
 
+ app.post('/api/login', function (req, res) {
+    //Extract the required fields(username and password) from the request body and store them in separate variables.
+    const { username, password } = req.body
+
+    //If statement to check if both the username and password fields are present in the request body.If any of them is missing, the code returns a failure status and an error message indicating that all input fields are required.
+    if(!username || !password) {
+        return res.json({
+            status: 'fail',
+            message: 'All input field are required'
+        })
+    }
+
+    //Use the User.findOne method to retrieve the user from the database based on the username.If an error occurs or the user is not found, the code returns a failure status and an error message indicating that the username or password is invalid.
+    User.findOne({username}, function(err, user) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Failed to find the user'
+            })
+        }
+
+        if(!user) {
+            return res.json({
+                status: 'fail',
+                message: 'Invalid username or password'
+            })
+        }
+
+        //Use the bcrypt.compare function to compare the password submitted by the user with the hashed password stored in the database.If the passwords do not match, the code returns a failure status and an error message indicating that the email or password is invalid.
+        bcrypt.compare(password, user.password, function(err, isCorrectPassword) {
+            if(err) {
+                return res.json({
+                    status: 'fail',
+                    message: 'Failed to compare password'
+                })
+            }
+
+            if(!isCorrectPassword) {
+                return res.json({
+                    status: 'fail',
+                    message: 'Invalid username or password'
+                })
+            }
+
+            //If the email and password are correct, the code returns a success status and the user.
+            res.json({
+                status: 'success',
+                data: {
+                    user
+                }
+            })
+        })
+    })
+})
+
  app.listen(port, function () {
     console.log(`Example app listening on port ${port}`)
 })
