@@ -10,6 +10,7 @@ import Feed from '../Pages/Feed/Feed';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import LandingFooter from '../LandingFooter/LandingFooter';
 import Browse from '../Pages/Browse/Browse';
+import Profile from '../Pages/Profile/Profile';
 
 const feedPosts = [
   {
@@ -106,6 +107,13 @@ const media = [
   }
 ]
 
+const user = {
+  username: "ReneauNC",
+  dateOfBirth: "June 20, 2001",
+  password: "password",
+  avatar: "/public/madmax.png"
+}
+
 class App extends React.Component {
   render() {
     return(
@@ -113,6 +121,7 @@ class App extends React.Component {
         <LandingNavBar />
         <Routes>
           <Route path="/" element={<Landing />}></Route>
+          <Route path='/profile' element={<Profile user={user}/>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/signup' element={<Registration />}></Route>
           <Route path='/library' element={<Library />}></Route>
