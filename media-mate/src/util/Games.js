@@ -1,38 +1,27 @@
 
-const header = {
+
+
+const Games = {
     
-}
+    accessToken : "c0ff5c08e8c4405d9cf4de2390689ad8",
+        
+    
 
-class Games {
-    constructor(){
-        this.baseURL = "https://api.igdb.com/v4";
-        this.accessToken = "8igz414ryb81qt3v9z8zycg4kilewt"
-        this.header = {
-            method: "POST",
-            headers: {
-                'Client-Id': '2jhnd0mmsifjxf19c6o8q1ocr2stml',
-                Authorization: `Bearer ${this.accessToken}`,
-            },
-            POST: "https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/games",
-            Body: "fields *;",
-            
-            
-        }
-    }
+    getGame(title){
+        fetch(`https://rawg.io/api/games?token&key=${this.accessToken}&search=${title}`)
+        .then(res => res.json())
+        .then(data => {
+            const datas = data.results.map(curData =>{
+                return {
+                    img: curData.background_image,
+                    id: curData.id,
+                    name: curData.name,
 
-    getGame(){
-        fetch("https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/games", this.header)
-        .then(res => {
-            console.log(res.data);
-            return res.json();
+                }
+            })
+            return datas;
         })
-        .then(re => {
-            console.log(re)
-            return re
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        .catch(error => console.error('Error:', error));
     }
 }
 
