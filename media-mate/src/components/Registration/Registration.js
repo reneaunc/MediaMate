@@ -67,10 +67,11 @@ const Register = () => {
                     // setting user to the redux store
                     dispatch(login({ username, email }));
                     //localStorage.setItem('user', JSON.stringify(data.data.user));
-                    navigate('/login', { replace: true });
+                    navigate('/profile', { replace: true });
                     console.log(data.message);
                 } else {
                     console.error(data.message);
+                    alert(data.message);
                 }
             })
             .catch(err => { })

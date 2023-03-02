@@ -15,7 +15,8 @@ const url = process.env.DATABASE_URL;
 // user schema
 const userSchema = new mongoose.Schema({
     username: {
-        type: String
+        type: String,
+        unique: true
     },
     email: {
         type: String,
@@ -56,9 +57,8 @@ app.post('/api/signup', function (req, res) {
              message: 'All input field are required'
          });
      }
- 
+
      //Use the bcrypt.hash function to hash the password before storing it in the database. The function takes the password and a salt value (12 in this case) as arguments, and returns the hashed password. If an error occurs while hashing the password, the code returns a failure status and an error message.
-     
      bcrypt.hash(password, 12, function(err, hashedPassword) {
          if(err) {
              return res.json({
@@ -67,14 +67,13 @@ app.post('/api/signup', function (req, res) {
              })
          }
          
-         //{ firstName: firstName, lastName: lastName, email: email, password: hashedPassword }
          req.body.password = hashedPassword;
          //Use the User.create method to create a new user in the database. The method takes the request body as an argument and returns the newly created user. If an error occurs or the user is not created, the code returns a failure status and an error message.
          User.create(req.body, function (err, User) {
              if (err || !User) {
                  return res.json({
                      status: 'fail',
-                     message: 'failed to create user'
+                     message: 'username or email already existed'
                  })
              }
  

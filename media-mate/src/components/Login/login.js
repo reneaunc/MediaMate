@@ -32,7 +32,7 @@ const Login = () => {
                         const { email = '', username = '' } = data.data.user;
                         dispatch(login({username, email}));
                         localStorage.setItem('user', JSON.stringify(data.data.user));
-                        navigate("/", { replace: true });
+                        navigate("/profile", { replace: true });
                         console.log(data.message);
                     } else {
                         console.error(data.message);
