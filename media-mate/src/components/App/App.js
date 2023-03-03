@@ -12,7 +12,6 @@ import WantMedia from '../Pages/Screens/WantMedia';
 //import MakeReview from '../Pages/MakeReview/MakeReview';
 import { Route, Routes } from 'react-router-dom';
 import Feed from '../Pages/Feed/Feed';
-import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import LandingFooter from '../LandingFooter/LandingFooter';
 import Browse from '../Pages/Browse/Browse';
 import Profile from '../Pages/Profile/Profile';
