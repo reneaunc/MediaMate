@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.css';
 import Landing from '../Landing/Landing';
+import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import Login from '../Login/Login';
 import MediaInfo from '../Pages/MediaInfo/MediaInfo';
 import Registration from '../Registration/Registration';
 import Library from '../Pages/Library/Library';
+import ConsumedMedia from '../Pages/Screens/ConsumedMedia';
+import WantMedia from '../Pages/Screens/WantMedia';
+//import Post from '../Pages/Post/Post';
+//import MakeReview from '../Pages/MakeReview/MakeReview';
 import { Route, Routes } from 'react-router-dom';
 import Feed from '../Pages/Feed/Feed';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
@@ -126,9 +131,10 @@ class App extends React.Component {
           <Route path='/signup' element={<Registration />}></Route>
           <Route path='/library' element={<Library />}></Route>
           <Route path='/feed' element={<Feed posts={feedPosts}/>}></Route>
-          <Route path='/browse' element={<Browse cards={media}/>}></Route>
-          <Route path='/media-info' element={<MediaInfo />}></Route>
+          <Route path='/browse' element={<MediaInfo />}></Route>
         </Routes>
+        <HomeScreen />
+        {/* <MediaInfo /> */}
         <LandingFooter />
       </div>
     );

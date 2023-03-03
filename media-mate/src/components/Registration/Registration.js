@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import './Registration.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App/App.css';
+import LandingNavBar from '../LandingNavBar/LandingNavBar';
+import LandingFooter from '../LandingFooter/LandingFooter';
 
 export default class Registration extends Component {
     render() {
         return (
+            <div>
+                <LandingNavBar/>
                 <div className="row">
                     <div className="col g-0 pe-5" id="panelleft">
                     </div>
@@ -62,6 +66,7 @@ export default class Registration extends Component {
                     <div className="col" id="panelright">
                     </div>
                 </div>
+            </div>
         )
     }
 }
