@@ -1,63 +1,38 @@
 import React from "react";
-import Card from '@mui/material/Card'
 import './MediaInfo.css';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, List, ListItem, ListItemText } from "@mui/material";
-import { Link } from "react-router-dom";
 
 class MediaInfo extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.props.card
+
+        this.state = {
+            title: 'Mad Max: Fury Road',
+            releaseYear: 2015,
+            rating: 'R',
+            category: ['Action', 'Adventure'],
+            description: 'In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland with the aid of a group of female prisoners, a psychotic worshiper, and a drifter named Max.',
+            communityReview: 8.1,
+            libraryStatus: 'None', //Should be either consumed, wishlist, or None
+            mediaImagePath: '../../../public/MadMax-FuryRoad.jpg'
+        }
     }
     render() {
+        const cardStyle = {
+            backgroundImage: this.state.mediaImagePath
+        }
         return (
-            <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                    sx={{ height: 140 }}
-                    image={this.state.mediaImagePath}
-                    title="mediaCover"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {this.state.title}
-                    </Typography>
-                    <List>
-                        <ListItem>
-                            <ListItemText
-                                primary="Rating"
-                                secondary={this.state.rating}
-                            />
-                        </ListItem>,
-                        <ListItem>
-                            <ListItemText
-                                primary="Category"
-                                secondary={this.state.category}
-                            />
-                        </ListItem>,
-                        <ListItem>
-                            <ListItemText
-                                primary="Description"
-                                secondary={this.state.description}
-                            />
-                        </ListItem>,
-                        <ListItem>
-                            <ListItemText
-                                primary="Community Review"
-                                secondary={this.state.communityReview}
-                            />
-                        </ListItem>
-                    </List>
-                </CardContent>
-                <CardActions>
-                    <Link to="/browse"><Button size="small">Back</Button></Link>
-                </CardActions>
-            </Card>
+            <div className="MediaInfoCard">
+                <div className="image_container" style={cardStyle}>
+                    <img src={this.state.mediaImagePath} alt=''/>
+                </div>
+                <h2>{this.state.title}</h2>
+                <h3>Rating: {this.state.rating} Release Year: {this.state.releaseYear}</h3>
+                <h3>Category: {this.state.category[0]}</h3>
+                <p>{this.state.description}</p>
+                <h2>{this.state.communityReview}</h2>
+            </div>
         )
     }
-}
+};
 
 export default MediaInfo;

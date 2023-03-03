@@ -1,18 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
-import {Box, 
-        Button, 
-        Table, 
-        TableBody, 
-        TableCell, 
-        TableContainer, 
-        TableHead, 
-        TableRow, 
-        Paper, 
-        MenuItem, 
-        FormControl, 
-        InputLabel, 
-        Select } from '@mui/material';
+import {Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 
 const db = [{title: 'movie1', runtime: 120}, {title: 'movie2', runtime: 90}];
 
@@ -41,23 +29,6 @@ class WantMedia extends React.Component {
         return (
             <main>
                 <section>
-                <div style={{ width: '100%' }}>
-                    <Box
-                        sx={{
-                        display: 'flex',
-                        m: 1,
-                        p: 1,
-                        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
-                        color: (theme) =>
-                            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
-                        border: '1px solid',
-                        borderColor: (theme) =>
-                            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-                        borderRadius: 2,
-                        fontSize: '0.875rem',
-                        fontWeight: '700',
-                        }}
-                    >
                 <FormControl style={{minWidth: 240}}>
                     <InputLabel>Select Movie</InputLabel>
                     <Select label="Select Movie" onChange={this.handleChange}
@@ -69,8 +40,6 @@ class WantMedia extends React.Component {
                 </FormControl>
                 <Button variant="contained" onClick={this.addMedia}>Add Media</Button>
                 <Button component={Link} to="../createreview" variant="contained" color="success">Create Review</Button>
-                </Box>
-                </div>
                 </section>
                 <section>
                     <TableContainer component={Paper}>
