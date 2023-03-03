@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { login } from "../../store/slices/authSlice";
+import {useDispatch, useSelector} from 'react-redux'
+import Protected from '../Protected/Protected';
 import './App.css';
 import Landing from '../Landing/Landing';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
@@ -10,8 +13,9 @@ import Library from '../Pages/Library/Library';
 import HomeScreen from '../Pages/HomeScreen/HomeScreen';
 //import Post from '../Pages/Post/Post';
 //import MakeReview from '../Pages/MakeReview/MakeReview';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Feed from '../Pages/Feed/Feed';
+import Profile from '../Pages/Profile/Profile';
 
 const feedPosts = [
   {
@@ -65,25 +69,58 @@ const feedPosts = [
   }
 ]
 
-class App extends React.Component {
-  render() {
-    return(
-      <div className="App">
-        <LandingNavBar />
-        <Routes>
-          <Route path="/" element={<Landing />}></Route>
-          <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<Registration />}></Route>
-          <Route path='/library' element={<Library />}></Route>
-          <Route path='/feed' element={<Feed posts={feedPosts}/>}></Route>
-          <Route path='/browse' element={<MediaInfo />}></Route>
-        </Routes>
-        <HomeScreen />
-        {/* <MediaInfo /> */}
-        <LandingFooter />
-      </div>
-    );
-  } 
+const App = () => {
+  const { loaded } = useSelector(state => state.auth)
+  const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loaded) {
+      //const user = JSON.parse(localStorage.getItem('user'));
+      setTimeout(() => {
+        dispatch(login({
+          username: user?.username || '',
+          email: user?.email || '',
+          password: user?.email || ''
+        }))
+        if (user?.username) {
+          navigate("/profile", { replace: true });
+        }
+      }, 1000)
+    }
+  })
+
+  /*
+  const user = {
+    username: "ReneauNC",
+    dateOfBirth: "June 20, 2001",
+    password: "password",
+    avatar: "/public/madmax.png"
+  }*/
+
+  return (
+    <div className="App">
+      <LandingNavBar />
+      <Routes>
+        <Route path="/" element={<Landing />}></Route>
+        <Route path="/profile" element={
+          <Protected>
+            <Profile />
+          </Protected>
+        } />
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<Registration />}></Route>
+        <Route path='/library' element={<Library />}></Route>
+        <Route path='/feed' element={<Feed posts={feedPosts} />}></Route>
+        <Route path='/browse' element={<MediaInfo />}></Route>
+      </Routes>
+      <HomeScreen />
+      {/* <MediaInfo /> */}
+      <LandingFooter />
+    </div>
+  );
+
 }
 
 export default App;
