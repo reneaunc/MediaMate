@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Grid, Box,  Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
 import LandingNavBar from "../../LandingNavBar/LandingNavBar";
 import './Library.css';
+import LandingFooter from "../../LandingFooter/LandingFooter";
 
 function Library() {
     return (
@@ -76,6 +77,7 @@ function Library() {
                         </Card>
                     </Grid>
                 </Grid>
+                <LandingFooter />
         </div>
     )
 };
