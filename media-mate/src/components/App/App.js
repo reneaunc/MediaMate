@@ -10,12 +10,10 @@ import Login from '../Login/login.js';
 import MediaInfo from "../Pages/MediaInfo/MediaInfo";
 import Registration from '../Registration/Registration';
 import Library from '../Pages/Library/Library';
-import HomeScreen from '../Pages/HomeScreen/HomeScreen';
-//import Post from '../Pages/Post/Post';
-//import MakeReview from '../Pages/MakeReview/MakeReview';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Feed from '../Pages/Feed/Feed';
 import Profile from '../Pages/Profile/Profile';
+import Browse from '../Pages/Browse/Browse';
 
 const feedPosts = [
   {
@@ -69,6 +67,49 @@ const feedPosts = [
   }
 ]
 
+const media = [
+  {
+    title: 'Shrek',
+    releaseYear: 2001,
+    rating: 'PG',
+    category: ['Animation', 'Adventure', 'Comedy'],
+    description: 'A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.',
+    communityReview: 7.9,
+    libraryStatus: 'None', //Should be either consumed, wishlist, or None
+    mediaImagePath: "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
+  },
+  {
+    title: 'Everything Everywhere All at Once',
+    releaseYear: 2022,
+    rating: 'R',
+    category: ['Action', 'Adventure', 'Comedy'],
+    description: 'A middle-aged Chinese immigrant is swept up into an insane adventure in which she alone can save existence by exploring other universes and connecting with the lives she could have led',
+    communityReview: 8.0,
+    libraryStatus: 'None', //Should be either consumed, wishlist, or None
+    mediaImagePath: "https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX1000_.jpg"
+  },
+  {
+    title: "Goat Simulator",
+    releaseYear: 2015,
+    rating: 'T',
+    category: ['Action', 'Adventure', 'Simulation'],
+    description: 'Goat Simulator is the latest in goat simulation technology, bringing next-gen goat simulation to YOU. You no longer have to fantasize about being a goat your dreams have finally come true!',
+    communityReview: 4.0,
+    libraryStatus: 'None', //Should be either consumed, wishlist, or None
+    mediaImagePath: "https://image.api.playstation.com/cdn/UP4415/CUSA02768_00/4E2BQXbe6ArXunsKvcyziEaT0pOryWIb.png"
+  },
+  {
+    title: 'The Catcher in the Rye',
+    releaseYear: 1951,
+    rating: 'N/A',
+    category: ['Fiction'],
+    description: 'Fleeing the crooks at Pencey Prep, he pinballs around New York City seeking solace in fleeting encounters—shooting the bull with strangers in dive hotels, wandering alone round Central Park, getting beaten up by pimps and cut down by erstwhile girlfriends. The city is beautiful and terrible, in all its neon loneliness and seedy glamour, its mingled sense of possibility and emptiness. Holden passes through it like a ghost, thinking always of his kid sister Phoebe, the only person who really understands him, and his determination to escape the phonies and find a life of true meaning.',
+    communityReview: 7.8,
+    libraryStatus: 'None', //Should be either consumed, wishlist, or None
+    mediaImagePath: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg"
+  }
+]
+
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
   const { user } = useSelector(state => state.auth);
@@ -113,10 +154,9 @@ const App = () => {
         <Route path='/signup' element={<Registration />}></Route>
         <Route path='/library' element={<Library />}></Route>
         <Route path='/feed' element={<Feed posts={feedPosts} />}></Route>
-        <Route path='/browse' element={<MediaInfo />}></Route>
+        <Route path='/browse' element={<Browse cards={media}/>}></Route>
+        <Route path='/media-info' element={<MediaInfo />}></Route>
       </Routes>
-      <HomeScreen />
-      {/* <MediaInfo /> */}
       <LandingFooter />
     </div>
   );

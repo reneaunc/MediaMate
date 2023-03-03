@@ -36,11 +36,4 @@ button:hover {
 
 button:active {
     transform: scale(0.95);
-<<<<<<< HEAD
-}
-
-.LandingNavBar {
-    background-image: url('../../../public/bookshelf.jpg');
-=======
->>>>>>> origin/backend
 }
