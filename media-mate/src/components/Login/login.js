@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import './../App/App.css';
 import './Login.css';
-import Landing from '../Landing/Landing';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
 import LandingFooter from '../LandingFooter/LandingFooter';
 
@@ -41,7 +40,6 @@ export default class Login extends Component {
         return (
             <div>
                 <LandingNavBar/>
-                <Landing/>
                 <div>
                     <div className="row">
                         <div className="col g-0 pe-5" id="panelleft">
