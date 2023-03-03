@@ -1,0 +1,10 @@
+.Landing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('../../../public/bookshelf.jpg');
+}
+
+.Landing h1, h2, h3 {
+    color: white;
+}
