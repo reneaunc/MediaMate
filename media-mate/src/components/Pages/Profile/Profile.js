@@ -21,11 +21,6 @@ const Profile = () => {
                         Email: {user?.email}
                     </ListItemText>
                 </ListItem>
-                <ListItem>
-                    <ListItemText>
-                        Password: {user?.password}
-                    </ListItemText>
-                </ListItem>
             </List>
         </Card>
     )

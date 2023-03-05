@@ -112,23 +112,22 @@ const media = [
 
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
-  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!loaded) {
-      //const user = JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(localStorage.getItem('user'));
       setTimeout(() => {
         dispatch(login({
           username: user?.username || '',
           email: user?.email || '',
-          password: user?.email || ''
+          avatar: ''
         }))
         if (user?.username) {
           navigate("/profile", { replace: true });
         }
-      }, 1000)
+      }, 500)
     }
   })
 
