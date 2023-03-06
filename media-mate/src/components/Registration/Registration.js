@@ -62,10 +62,10 @@ const Register = () => {
             .then(data => {
                 if (data.status === 'success') {
                     // getting user email from response if successful.
-                    const { email = '', username = '' } = data.data.User;
-                    const userObj = {email:data.data.User.email, username: data.data.User.username}
+                    const { email = '', username = '', consume = null, wishlist = null } = data.data.User;
+                    const userObj = {email:data.data.User.email, username: data.data.User.username, consume: data.data.User.consume, wishlist: data.data.User.wishlist}
                     // setting user to the redux store
-                    dispatch(login({ username, email }));
+                    dispatch(login({ username, email, consume, wishlist }));
                     localStorage.setItem('user', JSON.stringify(userObj));
                     navigate('/profile', { replace: true });
                     console.log(data.message);

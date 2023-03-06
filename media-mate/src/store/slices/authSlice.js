@@ -3,7 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 // initial auth state
 const initialUserState = {
     username: '',
-    email: ''
+    email: '',
+    consume: null,
+    wishlist: null
 }
 
 const initialState = {

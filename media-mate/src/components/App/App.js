@@ -122,7 +122,8 @@ const App = () => {
         dispatch(login({
           username: user?.username || '',
           email: user?.email || '',
-          avatar: ''
+          consume: user?.consume || null,
+          wishlist: user?.wishlist || null
         }))
         if (user?.username) {
           navigate("/profile", { replace: true });
@@ -130,14 +131,6 @@ const App = () => {
       }, 500)
     }
   })
-
-  /*
-  const user = {
-    username: "ReneauNC",
-    dateOfBirth: "June 20, 2001",
-    password: "password",
-    avatar: "/public/madmax.png"
-  }*/
 
   return (
     <div className="App">

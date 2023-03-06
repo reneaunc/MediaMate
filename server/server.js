@@ -24,7 +24,14 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String
-    } 
+    },
+    consume: {
+        type: [String]
+    },
+    wishlist: {
+        type: [String]
+    }
+
 })
 
 //CREATE A MONGOOSE MODEL
