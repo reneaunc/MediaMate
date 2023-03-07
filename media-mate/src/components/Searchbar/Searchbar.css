@@ -1,0 +1,27 @@
+.active-button{
+    background-color: darkblue;
+    color: white;
+}
+.inputBox {
+    border: 2px solid black;
+    width: 40vw;
+    font-size: 1.75em;
+    padding: .5em;
+    border-radius: 10px;
+    margin: 2em auto;
+}
+
+.searchSelector {
+    border: none;
+    font-size: 1.25em;
+    padding: .25em .75em;
+    margin: 1em;
+    margin-top: 0px;
+    border-radius: 10px;
+
+}
+
+.searchSelector:hover{
+    background-color:darkgray;
+    opacity: .75;
+}

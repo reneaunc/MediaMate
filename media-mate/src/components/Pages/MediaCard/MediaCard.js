@@ -13,14 +13,15 @@ class MediaCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: props.curMedia.id,
             title: props.curMedia.title,
-            releaseYear: props.curMedia.releaseYear,
+            releaseYear: props.curMedia.release,
             rating: props.curMedia.rating,
-            category: props.curMedia.category,
-            description: props.curMedia.description,
+            //category: props.curMedia.category,
+            description: props.curMedia.overview,
             communityReview: props.curMedia.communityReview,
             libraryStatus: props.curMedia.libraryStatus, //Should be either consumed, wishlist, or None
-            mediaImagePath: props.curMedia.mediaImagePath
+            mediaImagePath: props.curMedia.img
         }
     }
     render() {
