@@ -30,7 +30,8 @@ function SearchBar(props) {
     return (
       <div className="Search">
         
-        <input className='inputBox' placeholder='Search Title...'onChange={handleChange} value={searchTerm}></input><input onClick={submitSearch} type="submit"></input><br/>
+        <input className='inputBox' placeholder='Search Title...'onChange={handleChange} value={searchTerm}></input>
+        <input className='searchButton'onClick={submitSearch} type="submit"value='Search!'></input><br/>
         {selections.map(cur => {
           return <button  value={cur.toLocaleLowerCase()} className={mediaSelection===cur.toLocaleLowerCase()?'active-button searchSelector': 'searchSelector'} onClick={handleMedia}>{cur}</button>
         })}

@@ -19,18 +19,23 @@ class MediaCard extends React.Component {
             rating: props.curMedia.rating,
             //category: props.curMedia.category,
             description: props.curMedia.overview,
-            communityReview: props.curMedia.communityReview,
+            communityReview: props.curMedia.reviews,
             libraryStatus: props.curMedia.libraryStatus, //Should be either consumed, wishlist, or None
             mediaImagePath: props.curMedia.img
         }
     }
     render() {
         return (
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={
+                {
+                    maxWidth: 345,
+                    padding: 1.2, 
+                      
+                    }}>
                 <CardActionArea>
                     <Link to="/media-info" state={this.state}>
                     <CardMedia
-                        sx={{ height: 140 }}
+                        sx={{ height: 280 }}
                         image={this.state.mediaImagePath}
                         title="mediaCover"
                     />
@@ -38,17 +43,22 @@ class MediaCard extends React.Component {
                         <Typography gutterBottom variant="h5" component="div">
                             {this.state.title}
                         </Typography>
+
+                        <Typography variant="body2" color="text.secondary">
+                            {this.state.description}
+                        </Typography>
+
                         <List>
                             <ListItem>
                                 <ListItemText
-                                    primary="Rating"
-                                    secondary={this.state.rating}
+                                    primary= {this.state.communityReview}
+                                    secondary="Community Rating"
                                 />
-                            </ListItem>,
+                            </ListItem>
                             <ListItem>
                                 <ListItemText
-                                    primary="Community Review"
-                                    secondary={this.state.communityReview}
+                                    primary= {this.state.releaseYear}
+                                    secondary="Release"
                                 />
                             </ListItem>
                         </List>

@@ -8,7 +8,8 @@
     font-size: 1.75em;
     padding: .5em;
     border-radius: 10px;
-    margin: 2em auto;
+    margin: 2em .5em;
+    margin-bottom: .5em;
 }
 
 .searchSelector {
@@ -18,7 +19,23 @@
     margin: 1em;
     margin-top: 0px;
     border-radius: 10px;
+    margin-bottom: 3em;
 
+}
+
+.searchButton {
+    border: none;
+    font-size: 1.25em;
+    background-color: darkblue;
+    color: white;
+    padding: .25em .75em;
+    margin: 1em;
+    margin-top: 0px;
+    border-radius: 10px;
+
+}
+.searchButton:hover {
+    background-color: rgba(0, 0, 139, 0.7);
 }
 
 .searchSelector:hover{
