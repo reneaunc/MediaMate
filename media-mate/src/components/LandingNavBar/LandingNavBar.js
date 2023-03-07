@@ -16,7 +16,7 @@ function LandingNavBar() {
         // removing current user from redux store
         dispatch(logout());
         navigate("/")
-        //localStorage.removeItem('user');
+        localStorage.removeItem('user');
     };
 
     return (

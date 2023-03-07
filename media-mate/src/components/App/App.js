@@ -114,33 +114,25 @@ const media = [
 
 const App = () => {
   const { loaded } = useSelector(state => state.auth)
-  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!loaded) {
-      //const user = JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(localStorage.getItem('user'));
       setTimeout(() => {
         dispatch(login({
           username: user?.username || '',
           email: user?.email || '',
-          password: user?.email || ''
+          consume: user?.consume || null,
+          wishlist: user?.wishlist || null
         }))
         if (user?.username) {
           navigate("/profile", { replace: true });
         }
-      }, 1000)
+      }, 500)
     }
   })
-
-  /*
-  const user = {
-    username: "ReneauNC",
-    dateOfBirth: "June 20, 2001",
-    password: "password",
-    avatar: "/public/madmax.png"
-  }*/
 
   return (
     <div className="App">
