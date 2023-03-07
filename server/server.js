@@ -108,6 +108,41 @@ app.get('/api/allmedia', function(req, res) {
     })
 })
 
+// Route to grab specific piece of Media
+app.get('/api/media/:title', function(req, res) {
+    const title = req.params.title;
+    Media.findOne({ title: title }, function(err, media) {
+        if (err) {
+            return res.json({
+                status: 'fail',
+                message: 'Cannot connect to the database'
+            });
+        }
+        if (!media) {
+            return res.json({
+                status: 'fail',
+                message: 'Media not found'
+            });
+        }
+        res.json({
+            status: 'success',
+            data: {
+                media: {
+                    id: media._id,
+                    title: media.title,
+                    releaseYear: media.releaseYear,
+                    category: media.category,
+                    communityReview: media.communityReview,
+                    description: media.description,
+                    libraryStatus: media.libraryStatus,
+                    mediaImagePath: media.mediaImagePath
+                }
+            }
+        });
+    });
+});
+
+
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.
      const {username, email, password, confirmPassword} = req.body
