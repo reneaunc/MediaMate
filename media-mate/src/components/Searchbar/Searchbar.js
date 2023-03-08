@@ -53,7 +53,7 @@ function SearchBar(props) {
         <input onClick={handleSubmit} type="submit"></input>
           <ul>
           {mediaResult.map(curData => {
-            return <li>{curData.title}</li>
+            return <li>{curData}</li>
           })}
           </ul>
       </div>

@@ -14,6 +14,8 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Feed from '../Pages/Feed/Feed';
 import Profile from '../Pages/Profile/Profile';
 import Browse from '../Pages/Browse/Browse';
+import WantMedia from '../Pages/Screens/WantMedia';
+import ConsumedMedia from '../Pages/Screens/ConsumedMedia';
 
 const feedPosts = [
   {
@@ -148,6 +150,8 @@ const App = () => {
         <Route path='/feed' element={<Feed posts={feedPosts} />}></Route>
         <Route path='/browse' element={<Browse cards={media}/>}></Route>
         <Route path='/media-info' element={<MediaInfo />}></Route>
+        <Route path='/addmedia' element={<ConsumedMedia />}></Route>
+        <Route path='/addwantlist' element={<WantMedia />}></Route>
       </Routes>
       <LandingFooter />
     </div>
