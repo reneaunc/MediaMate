@@ -13,7 +13,7 @@ function Feed(props) {
     useEffect(() => {
         allUsers.getAllUsers().then((users) => setUsers(users));
         allMedias.getAllMedias().then((medias) => setMedias(medias));
-        oneMedia.getMediaByTitle("Sigma").then((media) => setMedia(media));
+        oneMedia.getMediaByTitle("Shrek").then((media) => setMedia(media));
     }, [])
     
     
@@ -21,15 +21,15 @@ function Feed(props) {
     return (
         <>
         <h1>Feed</h1>
-        <div>
+        {/* <div>
             <p>{`${media.id}`} & {`${media.title}`}</p>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
             {users.map((user) => <p> {user.id} & {user.username} & {user.email}</p>)}
         </div>
         <div>
             {medias.map((media) => <p> {media.id} & {media.title} & {media.releaseYear}</p>)}
-        </div>
+        </div> */}
         <div className={styles.feedArea}>
             {props.posts.map((cur)=> {
                 return <Post curPost={cur} />

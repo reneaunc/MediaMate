@@ -38,12 +38,12 @@ function SearchBar(props) {
         
         
         
-        <input onClick={handleSubmit} type="submit"></input>
+        {/* <input onClick={submitSearch} type="submit"></input>
           <ul>
           {mediaResult.map(curData => {
             return <li>{curData}</li>
           })}
-          </ul>
+          </ul> */}
       </div>
     );
 }
