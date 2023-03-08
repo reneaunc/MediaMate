@@ -32,7 +32,7 @@ class MediaCard extends React.Component {
                     padding: 1.2, 
                       
                     }}>
-                <CardActionArea>
+                <CardActionArea component={Link} to="/media-info" state={{ title: "Goat Simulator" }} >
                     <Link to="/media-info" state={this.state}>
                     <CardMedia
                         sx={{ height: 280 }}
@@ -67,7 +67,7 @@ class MediaCard extends React.Component {
                     </Link>
                 </CardActionArea>
                 <CardActions>
-                    <Link to="/media-info" state={{media: this.state}}><Button size="small">Add To Library</Button></Link>
+                    <Link to="/library"><Button size="small">Add To Library</Button></Link>
                 </CardActions>
             </Card>
             // <div className="MediaInfoCard">

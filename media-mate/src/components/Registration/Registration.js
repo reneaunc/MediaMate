@@ -6,7 +6,7 @@ import './Registration.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App/App.css';
 import LandingNavBar from '../LandingNavBar/LandingNavBar';
-import LandingFooter from '../LandingFooter/LandingFooter';
+//import LandingFooter from '../LandingFooter/LandingFooter';
 
 const Register = () => {
     const [username, setUsername] = useState("");
@@ -62,10 +62,11 @@ const Register = () => {
             .then(data => {
                 if (data.status === 'success') {
                     // getting user email from response if successful.
-                    const { email = '', username = '' } = data.data.User;
+                    const { email = '', username = '', consume = null, wishlist = null } = data.data.User;
+                    const userObj = {email:data.data.User.email, username: data.data.User.username, consume: data.data.User.consume, wishlist: data.data.User.wishlist}
                     // setting user to the redux store
-                    dispatch(login({ username, email }));
-                    //localStorage.setItem('user', JSON.stringify(data.data.user));
+                    dispatch(login({ username, email, consume, wishlist }));
+                    localStorage.setItem('user', JSON.stringify(userObj));
                     navigate('/profile', { replace: true });
                     console.log(data.message);
                 } else {

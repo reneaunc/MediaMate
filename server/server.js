@@ -24,12 +24,22 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String
-    } 
+    },
+    consume: {
+        type: [String]
+    },
+    wishlist: {
+        type: [String]
+    }
+
 })
+
+// media schema
+const mediaSchema = new mongoose.Schema()
 
 //CREATE A MONGOOSE MODEL
 const User = mongoose.model("User", userSchema);
-
+const Media = mongoose.model("medias", mediaSchema);
 
 //CONNECT THE MONGODB USING THE MONGOOSE
 mongoose.set('strictQuery', false);
@@ -45,6 +55,83 @@ mongoose.connect(url, function(err) {
 app.get('/', function(req, res) {
     res.send('Hello World')
 })
+
+//general route to get all user data
+app.get('/api/alluser', function(req, res) {
+    User.find({}, function(err, users) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Cannot connect to the database'
+            })
+        }
+
+        if(!users) {
+            return res.json({
+                status: 'fail',
+                message: 'cannot get users collections'
+            })
+        }
+
+        res.json({
+            status: 'success',
+            data: {
+                users
+            }
+        })
+    })
+})
+
+//general route to get all media data
+app.get('/api/allmedia', function(req, res) {
+    Media.find({}, function(err, medias) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Cannot connect to the database'
+            })
+        }
+
+        if(!medias) {
+            return res.json({
+                status: 'fail',
+                message: 'cannot get medias collection'
+            })
+        }
+
+        res.json({
+            status: 'success',
+            data: {
+                medias
+            }
+        })
+    })
+})
+
+// Route to grab specific piece of Media
+app.get('/api/media/:title', function(req, res) {
+    const title = req.params.title;
+    Media.findOne({ title: title }, function(err, media) {
+        if (err) {
+            return res.json({
+                status: 'fail',
+                message: 'Cannot connect to the database'
+            });
+        }
+        if (!media) {
+            return res.json({
+                status: 'fail',
+                message: 'Media not found'
+            });
+        }
+        res.json({
+            status: 'success',
+            data: {
+                media
+            }
+        });
+    });
+});
 
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.

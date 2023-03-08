@@ -26,9 +26,10 @@ const Login = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        const { email = '', username = '' } = data.data.user;
-                        dispatch(login({username, email}));
-                        localStorage.setItem('user', JSON.stringify(data.data.user));
+                        const { email = '', username = '', consume = null, wishlist = null } = data.data.user;
+                        const userObj = {email:data.data.user.email, username: data.data.user.username, consume: data.data.user.consume, wishlist: data.data.user.wishlist}
+                        dispatch(login({username, email, consume, wishlist}));
+                        localStorage.setItem('user', JSON.stringify(userObj));
                         navigate("/profile", { replace: true });
                         console.log(data.message);
                     } else {
