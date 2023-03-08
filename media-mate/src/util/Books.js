@@ -1,3 +1,5 @@
+import { Rating, ratingClasses } from "@mui/material";
+
 const Books = {
 
     
@@ -16,13 +18,17 @@ const Books = {
             .then(response => response.json())
             .then(data => {
                 if(Array.isArray(data.results)){
+                    console.log(data)
                     const shortened =  data.results.map(curData =>{
                         return {
                             id: curData.work_id,
                             author: `${curData.author_first_names[0]} ${curData.author_last_names[0]}`,
                             title: curData.title,
-                            series: curData.series_name,
-                            summary: curData.summary
+                            overview: curData.summary,
+                            img: curData.published_works[0].cover_art_url,
+                            release: curData.copyright,
+                            rating: curData.max_age,
+                            reviews:''
                         }
                     })
                     //console.log(shortened)
