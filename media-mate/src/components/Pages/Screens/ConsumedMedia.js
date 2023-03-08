@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
-import {Button, 
+import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+/*      Button, 
         Table, 
         TableBody, 
         TableCell, 
@@ -11,8 +11,7 @@ import {Button,
         MenuItem, 
         FormControl, 
         InputLabel, 
-        Select,
-        Box } from '@mui/material';
+        Select, */
 
 const db = [{title: 'movie1', runtime: 120}, {title: 'movie2', runtime: 90}];
 
@@ -22,7 +21,7 @@ class ConsumedMedia extends React.Component {
         super(props);
         this.state = {
           media: 0,
-          myMedia: []
+          myMedia: [],
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -39,14 +38,14 @@ class ConsumedMedia extends React.Component {
 
     render() {
         return (
-            <main>
+            <div className="MyMedia">
                 <section>
                 <div style={{ width: '100%' }}>
                     <Box
                         sx={{
                         display: 'flex',
                         m: 1,
-                        p: 1,
+                        p: 2.5,
                         bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : '#fff'),
                         color: (theme) =>
                             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800',
@@ -56,49 +55,179 @@ class ConsumedMedia extends React.Component {
                         borderRadius: 2,
                         fontSize: '0.875rem',
                         fontWeight: '700',
+                        backgroundColor: "#8baac4",
                         }}
                     >
-                        <FormControl style={{minWidth: 150}}>
-                            <InputLabel>Select Movie</InputLabel>
-                            <Select label="Select Movie" onChange={this.handleChange}
-                                value = {this.state.media}>
-                                {db.map((row, i) => (
-                                    <MenuItem value={i}> {row.title} </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <Button size="large" variant="contained" onClick={this.addMedia}>Add Media</Button>
                     </Box>
-                    </div>
+                </div>
                 </section>
+                <div>
+                    <h1> My Media </h1>
+                </div>
                 <section>
-                    <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Movies</TableCell>
-                                <TableCell align="right">Title</TableCell>
-                                <TableCell align="right">Runtime</TableCell>
-                            </TableRow>
-                            </TableHead>
-                            <TableBody>
-                            {this.state.myMedia.map((row, i) => (
-                                <TableRow
-                                key={i}
-                                >
-                                <TableCell component="th" scope="row">
-                                    {i}
-                                </TableCell>
-                                <TableCell align="right">{row.title}</TableCell>
-                                <TableCell align="right">{row.runtime}</TableCell>
-                                </TableRow>
-                            ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                    <Button component={Link} to="../createreview" variant="contained" color="success">Create Review</Button>
+                <Grid
+                    container
+                    rowSpacing={1} 
+                    columnSpacing={2}
+                    direction="row"
+                    justifyContent={"center"}
+                    alignItems="center"
+                    >
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://m.media-amazon.com/images/I/71jLBXtWJWL._AC_UF1000,1000_QL80_.jpg"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    The Lord of the Rings
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Book
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://m.media-amazon.com/images/I/81xTx-LxAPL._AC_UF894,1000_QL80_.jpg"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Forrest Gump
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Movie
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 450 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://m.media-amazon.com/images/I/91vnzZO5yPL._AC_UF1000,1000_QL80_.jpg"
+                                alt="add to want list"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    The Very Hungry Caterpillar
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Book
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Minecraft
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Game
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 268}}
+                                component="img"
+                                image="https://m.media-amazon.com/images/I/81iqZ2HHD-L._AC_UF1000,1000_QL80_.jpg"
+                                alt="add to want list"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Harry Potter and the Sorcerer's Stone
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Book
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://m.media-amazon.com/images/I/51EG732BV3L._AC_UF894,1000_QL80_.jpg"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    The Matrix
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Movie
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image="https://i0.wp.com/cedars.cedarville.edu/wp/wp-content/uploads/2020/05/Parasite-scaled.jpg?fit=1657%2C2560&ssl=1"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Parasite
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Movie
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                    <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                                <CardMedia style = {{ height: 270}}
+                                component="img"
+                                image="https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png"
+                                alt="add media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Red Dead Redemption 2
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Game
+                                </Typography>
+                                </CardContent>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
+                </Grid>
                 </section>
-            </main>
+            </div>
         );
     }
   }

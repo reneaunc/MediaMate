@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Special+Elite');
 @import url('https://fonts.googleapis.com/css?family=Suwannaphum');
+@import url('https://fonts.googleapis.com/css?family=Prata');
 
 .Library{
     background-color: #2f3245;
@@ -8,6 +9,18 @@
     position: absolute;
     height: 100%;
     width: 100%;
+}
+
+body{
+    background-image: url("blue-textured-background.jpg");
+}
+
+h1{
+    padding-top: 50px;
+    -webkit-text-stroke: 0.1px aliceblue;
+    font-family: "Prata", sans-serif;
+    color: aliceblue;
+    font-size: 60px;
 }
 
 .MuiCardContent-root.css-46bh2p-MuiCardContent-root {
