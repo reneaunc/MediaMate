@@ -24,7 +24,7 @@ const Books = {
                             id: curData.work_id,
                             author: `${curData.author_first_names[0]} ${curData.author_last_names[0]}`,
                             title: curData.title,
-                            summary: curData.summary,
+                            overview: curData.summary,
                             img: curData.published_works[0].cover_art_url,
                             release: curData.copyright,
                             rating: curData.max_age,

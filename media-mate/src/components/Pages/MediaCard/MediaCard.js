@@ -44,7 +44,8 @@ class MediaCard extends React.Component {
                             {this.state.title}
                         </Typography>
 
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography
+                            sx={{ maxHeight: 200, overflow: 'hidden' }} variant="body2" color="text.secondary">
                             {this.state.description}
                         </Typography>
 
