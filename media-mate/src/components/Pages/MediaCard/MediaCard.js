@@ -13,23 +13,37 @@ class MediaCard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            id: props.curMedia.id,
             title: props.curMedia.title,
-            releaseYear: props.curMedia.releaseYear,
+            releaseYear: props.curMedia.release,
             rating: props.curMedia.rating,
-            category: props.curMedia.category,
-            description: props.curMedia.description,
-            communityReview: props.curMedia.communityReview,
+            description: props.curMedia.overview,
+            communityReview: props.curMedia.reviews,
             libraryStatus: props.curMedia.libraryStatus, //Should be either consumed, wishlist, or None
-            mediaImagePath: props.curMedia.mediaImagePath
+            mediaImagePath: props.curMedia.img
         }
-    }
+        this.media = {
+            title: this.state.title, 
+            releaseYear: this.state.releaseYear,
+            rating: this.state.rating,
+            description: this.state.description,
+            communityReview: this.state.communityReview,
+            libraryStatus: this.state.libraryStatus,
+            mediaImagePath: this.state.mediaImagePath
+        }
+    } 
     render() {
         return (
-            <Card sx={{ maxWidth: 345 }}>
-                <CardActionArea component={Link} to="/media-info" state={{ title: "Goat Simulator" }} >
-                    <Link to="/media-info" state={this.state}>
+            <Card sx={
+                {
+                    maxWidth: 345,
+                    padding: 1.2, 
+                      
+                    }}>
+                <CardActionArea>
+                    <Link to="/media-info" state={{media: this.media}}>
                     <CardMedia
-                        sx={{ height: 140 }}
+                        sx={{ height: 280 }}
                         image={this.state.mediaImagePath}
                         title="mediaCover"
                     />
@@ -37,17 +51,23 @@ class MediaCard extends React.Component {
                         <Typography gutterBottom variant="h5" component="div">
                             {this.state.title}
                         </Typography>
+
+                        <Typography
+                            sx={{ maxHeight: 200, overflow: 'hidden' }} variant="body2" color="text.secondary">
+                            {this.state.description}
+                        </Typography>
+
                         <List>
                             <ListItem>
                                 <ListItemText
-                                    primary="Rating"
-                                    secondary={this.state.rating}
+                                    primary= {this.state.communityReview}
+                                    secondary="Community Rating"
                                 />
-                            </ListItem>,
+                            </ListItem>
                             <ListItem>
                                 <ListItemText
-                                    primary="Community Review"
-                                    secondary={this.state.communityReview}
+                                    primary= {this.state.releaseYear}
+                                    secondary="Release"
                                 />
                             </ListItem>
                         </List>

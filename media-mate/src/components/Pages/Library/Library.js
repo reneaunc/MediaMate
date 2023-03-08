@@ -51,7 +51,7 @@ function Library() {
                                     My Media
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Add media to your consumed media library
+                                    View your consumed library
                                 </Typography>
                                 </CardContent>
                             </CardActionArea>
@@ -70,7 +70,7 @@ function Library() {
                                     Want List
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    Add media to your want to consume media library
+                                    View your want to consume library
                                 </Typography>
                                 </CardContent>
                             </CardActionArea>

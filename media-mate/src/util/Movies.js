@@ -13,13 +13,18 @@ const Movies = {
        .then((res) => res.json())
    
         .then( (data) => {
-            //console.log(data);
+            console.log(data);
+    
             const datas = data.results.map(curdata =>{
                 return {
                     title: curdata.title,
                     overview: curdata.overview,
                     img: `https://image.tmdb.org/t/p/original/${curdata.poster_path}`,
-                    id: curdata.id
+                    id: curdata.id,
+                    release: curdata.release_date,
+                    rating: '',
+                    reviews: curdata.vote_average
+                    
                 }
             });
             return datas;

@@ -1,15 +1,14 @@
-import Movies from "../../util/Movies";
-import Books from "../../util/Books";
-import Games from "../../util/Games";
+
+import './Searchbar.css';
 
 import { useState } from 'react';
 
 
 function SearchBar(props) {
+  const selections = ['Movie', 'Game', 'Book'];
 
     const [searchTerm, handleSearchTerm] = useState("");
     const [mediaSelection, handleMediaSelection] = useState('movie')
-    const [mediaResult, handleMediaResult] = useState([]);
   
     const handleChange = (e) =>{
       e.preventDefault();
@@ -21,41 +20,30 @@ function SearchBar(props) {
       console.log(e.target.value);
       handleMediaSelection(e.target.value);
     }
-    
-    const handleSubmit = async (e)=> {
+    const submitSearch = (e) =>{
       e.preventDefault();
-  
-      if(mediaSelection==="movie"){
-        Movies.searchMovie(searchTerm)
-          .then(result => handleMediaResult(result))
-  
-      }else if(mediaSelection==="book"){
-        Books.getBook(searchTerm)
-          .then(result => handleMediaResult(result))
-  
-      } else if (mediaSelection==="game"){
-        Games.getGame(searchTerm)
-          .then( result => handleMediaResult(result))
-  
-      } else {
-        console.log("error")
-      }
+      props.search(searchTerm, mediaSelection)
     }
+    
+    
     
     return (
       <div className="Search">
         
-        <input placeholder='Search Title...'onChange={handleChange} value={searchTerm}></input><br/>
-        <button value="movie" onClick={handleMedia}>Movie</button><br/>
-        <button value="game" onClick={handleMedia}>Game</button><br/>
-        <button value="book" onClick={handleMedia}>Book</button><br/>
+        <input className='inputBox' placeholder='Search Title...'onChange={handleChange} value={searchTerm}></input>
+        <input className='searchButton'onClick={submitSearch} type="submit"value='Search!'></input><br/>
+        {selections.map(cur => {
+          return <button  value={cur.toLocaleLowerCase()} className={mediaSelection===cur.toLocaleLowerCase()?'active-button searchSelector': 'searchSelector'} onClick={handleMedia}>{cur}</button>
+        })}
         
-        <input onClick={handleSubmit} type="submit"></input>
+        
+        
+        {/* <input onClick={submitSearch} type="submit"></input>
           <ul>
           {mediaResult.map(curData => {
             return <li>{curData}</li>
           })}
-          </ul>
+          </ul> */}
       </div>
     );
 }

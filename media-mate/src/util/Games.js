@@ -8,14 +8,19 @@ const Games = {
     
 
     getGame(title){
-        fetch(`https://rawg.io/api/games?token&key=${this.accessToken}&search=${title}`)
+        return fetch(`https://rawg.io/api/games?token&key=${this.accessToken}&search=${title}`)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             const datas = data.results.map(curData =>{
                 return {
-                    img: curData.background_image,
                     id: curData.id,
-                    name: curData.name,
+                    title: curData.name,
+                    overview: '',
+                    img: curData.background_image,
+                    release: curData.released,
+                    rating: 'E',//curData.esrb_rating.name,
+                    reviews: curData.rating
 
                 }
             })

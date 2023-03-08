@@ -51,6 +51,7 @@ function LandingNavBar() {
                     <li><Link to="/feed"><button>Feed</button></Link></li>
                     <li><Link to="/library"><button>Library</button></Link></li>
                     <li><Link to="/browse"><button>Browse</button></Link></li>
+                    <li><Link to="/"><button>Home</button></Link></li>
                 </ul>
             </nav>
         </div>
