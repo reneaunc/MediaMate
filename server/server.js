@@ -127,21 +127,11 @@ app.get('/api/media/:title', function(req, res) {
         res.json({
             status: 'success',
             data: {
-                media: {
-                    id: media._id,
-                    title: media.title,
-                    releaseYear: media.releaseYear,
-                    category: media.category,
-                    communityReview: media.communityReview,
-                    description: media.description,
-                    libraryStatus: media.libraryStatus,
-                    mediaImagePath: media.mediaImagePath
-                }
+                media
             }
         });
     });
 });
-
 
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.

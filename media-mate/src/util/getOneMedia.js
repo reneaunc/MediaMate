@@ -9,17 +9,13 @@ const oneMedia = {
       .then(res => res.json())
       .then(data => {
         if (data.status === 'success') {
-          const mediaData = data.data.media;
-          return {
-            id: mediaData.id,
-            title: mediaData.title,
-            releaseYear: mediaData.releaseYear,
-            category: mediaData.category,
-            communityReview: mediaData.communityReview,
-            description: mediaData.description,
-            libraryStatus: mediaData.libraryStatus,
-            mediaImagePath: mediaData.mediaImagePath
-          };
+            if(data.data.media !== null) {
+                const mediaObj = {id: data.data.media._id, title: data.data.media.title, releaseYear:data.data.media.releaseYear, category:data.data.media.category, communityReview:data.data.media.communityReview, description: data.data.media.description, libraryStatus: data.data.media.libraryStatus, mediaImagePath: data.data.media.mediaImagePath}
+                return mediaObj
+            } else {
+                console.log("No data")
+                return [];
+            }
         } else {
           console.error(data.message);
           alert(data.message);
