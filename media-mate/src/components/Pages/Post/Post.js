@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Post.module.css';
+import { Link } from "react-router-dom";
 
 function Post (props) {
     return (
@@ -15,7 +16,10 @@ function Post (props) {
             <div className={styles.card}>
                 <img src={props.curPost.media.img} alt='' width="100%" />
                 <div className={styles.cardDetails}>
-                    <h3 className={styles.title}>{props.curPost.media.title}</h3>
+                    <h3 className={styles.title}>
+                    <Link to="/media-info" state={props.curPost}>
+                        {props.curPost.media.title}
+                        </Link></h3>
                     <div>
                         <div className={styles.rating}>
                             {props.curPost.rating}
