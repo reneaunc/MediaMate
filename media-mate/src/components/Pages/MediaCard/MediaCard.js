@@ -17,13 +17,21 @@ class MediaCard extends React.Component {
             title: props.curMedia.title,
             releaseYear: props.curMedia.release,
             rating: props.curMedia.rating,
-            //category: props.curMedia.category,
             description: props.curMedia.overview,
             communityReview: props.curMedia.reviews,
             libraryStatus: props.curMedia.libraryStatus, //Should be either consumed, wishlist, or None
             mediaImagePath: props.curMedia.img
         }
-    }
+        this.media = {
+            title: this.state.title, 
+            releaseYear: this.state.releaseYear,
+            rating: this.state.rating,
+            description: this.state.description,
+            communityReview: this.state.communityReview,
+            libraryStatus: this.state.libraryStatus,
+            mediaImagePath: this.state.mediaImagePath
+        }
+    } 
     render() {
         return (
             <Card sx={
@@ -32,8 +40,8 @@ class MediaCard extends React.Component {
                     padding: 1.2, 
                       
                     }}>
-                <CardActionArea component={Link} to="/media-info" state={{ title: "Goat Simulator" }} >
-                    <Link to="/media-info" state={this.state}>
+                <CardActionArea>
+                    <Link to="/media-info" state={{media: this.media}}>
                     <CardMedia
                         sx={{ height: 280 }}
                         image={this.state.mediaImagePath}
