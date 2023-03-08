@@ -8,56 +8,79 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { Link } from "react-router-dom";
-import oneMedia from "../../../util/getOneMedia";
+//import oneMedia from "../../../util/getOneMedia";
 
 function MediaInfo(props) {
-  const [media, setMedia] = useState({});
+  //const [media, setMedia] = useState({});
   const location = useLocation();
-  const title = location.state.title;
-  console.log(title)
-  useEffect(() => {
-    oneMedia.getMediaByTitle(title).then((media) => {
-      if (media && media.length > 0) {
-        setMedia(media[0]);
-      }
-    });
-  }, [title]);
-  console.log(media);
+  //const { title, releaseYear, rating, description, communityReview, libraryStatus, mediaImagePath } = location.state;
+  const media = location.state;
+  console.log(media)
+  for (const key in media.media) {
+    if (media.media[key] == "" || media.media[key] == null){
+      media.media[key] = "N/A"
+    }
+  }
+  // console.log(test)
+  // console.log(title)
+  // console.log(releaseYear)
+  // console.log(rating)
+  // console.log(description)
+  // console.log(communityReview)
+  // console.log(libraryStatus)
+  // console.log(mediaImagePath)
+  // useEffect(() => {
+  //   oneMedia.getMediaByTitle(`"${title}"`).then((media) => {
+  //     if (media && media.length > 0) {
+  //       setMedia(media[0]);
+  //     }
+  //   });
+  // }, [title]);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={media.mediaImagePath}
-        title="mediaCover"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {media.title}
-        </Typography>
-        <List>
-          <ListItem>
-            <ListItemText primary="Rating" secondary={media.rating} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Category" secondary={media.category} />
-          </ListItem>
-          <ListItem>
-            <ListItemText primary="Description" secondary={media.description} />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Community Review"
-              secondary={media.communityReview}
-            />
-          </ListItem>
-        </List>
-      </CardContent>
-      <CardActions>
-        <Link to="/browse">
-          <Button size="small">Back</Button>
-        </Link>
-      </CardActions>
-    </Card>
+    <div style={{ margin: 100 }}>
+      <div>
+        <Card raised={true} sx={{ maxWidth: 2000, maxHeight: 1000 }}>
+          <CardMedia
+            sx={{ height: 140 }}
+            image={media.media.mediaImagePath}
+            title="mediaCover"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {media.media.title}
+            </Typography>
+            <List>
+              <ListItem>
+                <ListItemText primary="Rating" secondary={media.media.rating} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Description" secondary={media.media.description} />
+              </ListItem>
+              <ListItem>
+                <ListItemText
+                  primary="Community Review"
+                  secondary={media.media.communityReview}
+                />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Release Year" secondary={media.media.releaseYear} />
+              </ListItem>
+              <ListItem>
+                <ListItemText primary="Library Status" secondary={media.media.libraryStatus} />
+              </ListItem>
+            </List>
+          </CardContent>
+          <CardActions>
+            <Link to="/browse">
+              <Button size="small">Back</Button>
+            </Link>
+            <Link to="/library" >
+              <Button size="small">Add to Library</Button>
+            </Link>
+          </CardActions>
+        </Card>
+      </div>
+    </div>
   );
 }
 
