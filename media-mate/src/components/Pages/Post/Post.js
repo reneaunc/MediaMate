@@ -17,7 +17,7 @@ function Post (props) {
                 <img src={props.curPost.media.img} alt='' width="100%" />
                 <div className={styles.cardDetails}>
                     <h3 className={styles.title}>
-                    <Link to="/media-info" state={props.curPost.media}>
+                    <Link to="/media-info" state={{media: props.curPost.media}}>
                         {props.curPost.media.title}
                         </Link></h3>
                     <div>
