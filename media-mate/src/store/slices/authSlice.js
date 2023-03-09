@@ -4,8 +4,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialUserState = {
     username: '',
     email: '',
-    consume: null,
-    wishlist: null
+    //consume: [],
+    //wishlist: []
 }
 
 const initialState = {

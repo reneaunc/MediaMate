@@ -133,6 +133,40 @@ app.get('/api/media/:title', function(req, res) {
     });
 });
 
+app.post('/api/adduserconsume', function (req, res) {
+    const {title, username} = req.body
+
+    if(!title || !user) {
+        return res.json({
+            status: 'fail',
+            message: 'title or user is missing'
+        });
+    }
+
+    User.updateOne({username: username}, { $push: {wishlist: title}}, function(err, result) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'error with the database connection'
+            });
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to update document'
+            });
+        }
+
+        res.json({
+            status: 'success',
+            data: {
+                modifiedCount
+            }
+        });
+    })
+})
+
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.
      const {username, email, password, confirmPassword} = req.body
