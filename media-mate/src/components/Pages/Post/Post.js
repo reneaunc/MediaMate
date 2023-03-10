@@ -2,7 +2,19 @@ import React from 'react';
 import styles from './Post.module.css';
 import { Link } from "react-router-dom";
 
+
+
 function Post (props) {
+    const media = {
+        title: props.curPost.media.title, 
+        releaseYear: props.curPost.media.release,
+        rating: props.curPost.media.rating,
+        description: props.curPost.media.overview,
+        communityReview: props.curPost.media.reviews,
+        libraryStatus: props.curPost.media.libraryStatus,
+        mediaImagePath: props.curPost.media.img
+    }
+
     return (
         <div className={styles.fullPost}>
             <div className={styles.topInfo}>
@@ -17,7 +29,7 @@ function Post (props) {
                 <img src={props.curPost.media.img} alt='' width="100%" />
                 <div className={styles.cardDetails}>
                     <h3 className={styles.title}>
-                    <Link to="/media-info" state={{media: props.curPost.media}}>
+                    <Link to="/media-info" state={{media: media}}>
                         {props.curPost.media.title}
                         </Link></h3>
                     <div>
