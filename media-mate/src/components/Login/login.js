@@ -27,7 +27,7 @@ const Login = () => {
                 .then(data => {
                     if (data.status === 'success') {
                         const { email = '', username = ''} = data.data.user;
-                        const userObj = {email:data.data.user.email, username: data.data.user.username, consume: data.data.user.consume, wishlist: data.data.user.wishlist}
+                        const userObj = {email:data.data.user.email, username: data.data.user.username}
                         dispatch(login({username, email}));
                         localStorage.setItem('user', JSON.stringify(userObj));
                         navigate("/profile", { replace: true });

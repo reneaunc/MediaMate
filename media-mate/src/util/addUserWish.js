@@ -1,17 +1,18 @@
-
 const addUserWish = {
-    addUserWishlist(title, username) {
-      return fetch("/api/adduserconsume", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title, username })
-      })
+  
+  addUserWishlist(title, username) {
+    fetch("/api/adduserwish", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, title })
+    })
       .then(res => res.json())
       .then(data => {
         if (data.status === 'success') {
-            console.log(data.data.modifiedCount)
+          console.log(data.data.resultObj)
+          alert("media added to wishlist")
         } else {
           console.error(data.message);
           alert(data.message);
@@ -21,8 +22,9 @@ const addUserWish = {
         console.error(err);
         alert(err);
       });
-    }
+
+  }
 }
 
-  
-  export default addUserWish;
+
+export default addUserWish;
