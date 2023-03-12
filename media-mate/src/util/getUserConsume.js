@@ -1,5 +1,5 @@
-const getUserWishlist = {
-    getUserWishlist(username) {
+const getUserConsume = {
+    getUserConsume(username) {
         return fetch(`/api/grabuser/${username}`, {
             method: 'GET',
             headers: {
@@ -11,7 +11,7 @@ const getUserWishlist = {
             //console.log(data.data.user.username)
             if(data.status === 'success') {
                 //console.log(data.data.user.email)
-                const mediaList = {list: data.data.user.wishlist};
+                const mediaList = {list: data.data.user.consume};
                 //console.log(mediaList.list);
                 return mediaList
             } else {

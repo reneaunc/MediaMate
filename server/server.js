@@ -260,7 +260,6 @@ app.post('/api/adduserconsume', function (req, res) {
         });
     }
 
-    User.updateOne({username: username}, { $push: {wishlist: title}}, function(err, result) {
     User.updateOne({username: username}, { $push: {consume: title}}, function(err, result) {
 
         if(err) {

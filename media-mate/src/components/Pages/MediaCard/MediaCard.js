@@ -11,10 +11,11 @@ import { Link } from "react-router-dom";
 import addUserWish from "../../../util/addUserWish";
 import addMediaDB from "../../../util/addMediaDB";
 import removeUserWish from "../../../util/removeUserWish";
+import addUserConsume from "../../../util/addUserConsume";
 
 class MediaCard extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             id: props.curMedia.id,
             title: props.curMedia.title,
@@ -45,6 +46,19 @@ class MediaCard extends React.Component {
             alert("Please login or signup to save your media choice")
         } else {
             addUserWish.addUserWishlist(this.state.title, user.username)
+            addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
+                this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
+
+        }
+        event.preventDefault();
+    }
+
+    userAddConsumer(event) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(!user) {
+            alert("Please login or signup to save your media choice")
+        } else {
+            addUserConsume.addUserConsumelist(this.state.title, user.username)
             addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
 
@@ -105,7 +119,8 @@ class MediaCard extends React.Component {
                     </Link>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={this.userAddWish} size="small">Add To Library</Button>
+                    <Button onClick={this.userAddWish} size="small">Add To Wishlist</Button>
+                    <Button onClick={this.userAddConsumer} size="small">Add to Consumed List</Button>
                     <Button onClick={this.userRemoveWish} size="small">Remove from Library</Button>
                 </CardActions>
             </Card>

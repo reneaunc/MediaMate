@@ -74,9 +74,6 @@ function MediaInfo(props) {
             <Link to="/browse">
               <Button size="small">Back</Button>
             </Link>
-            <Link to="/library" >
-              <Button size="small">Add to Library</Button>
-            </Link>
           </CardActions>
         </Card>
       </div>
