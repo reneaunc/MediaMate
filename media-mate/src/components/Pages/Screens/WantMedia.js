@@ -1,5 +1,7 @@
 import { React, useState } from 'react';
 import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import { Link } from "react-router-dom";
+
 
 function WantMedia() {
     return (
@@ -27,6 +29,8 @@ function WantMedia() {
             </div>
             </section>
             <div>
+            <Link to="/library"><button style={{float: 'left', margin: 20, padding:12}}>Back</button></Link>
+
                 <h1> My Want List </h1>
             </div>
             <section>
