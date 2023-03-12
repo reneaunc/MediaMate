@@ -26,4 +26,4 @@ const getUserConsume = {
     }
 };
 //data.user.wishlist[0]
-export default getUserWishlist
+export default getUserConsume;

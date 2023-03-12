@@ -1,11 +1,38 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
-import { Link } from "react-router-dom";
+import allMedias from '../../../util/getAllMedias';
+import getUserWishlist from '../../../util/getUserWishlist';
+import { Link,  } from "react-router-dom";
+
 
 
 function WantMedia() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+   
+    const [medias, setMedias] = useState([]);
+    const [mediaTitles, setMediaTitles] = useState([]);
+
+  
+    useEffect(() => {
+        allMedias.getAllMedias().then((medias) => setMedias(medias));
+        getUserWishlist.getUserWishlist(user.username).then((mediaTitles) => setMediaTitles(mediaTitles))
+    }, [])
+
+
+    const infoArr = []
+    const userList = mediaTitles.list
+    for(const userMedia in userList){
+        for(const media in medias){
+            if(medias[media].title === userList[userMedia]){
+                console.log(medias[media]);
+                infoArr.push(medias[media])
+            }
+        }
+    }
+  
     return (
-        <main>
+        <div className="MyMedia">
             <section>
             <div style={{ width: '100%' }}>
                 <Box
@@ -22,7 +49,7 @@ function WantMedia() {
                     borderRadius: 2,
                     fontSize: '0.875rem',
                     fontWeight: '700',
-                    backgroundColor: '#8baac4',
+                    backgroundColor: "#8baac4",
                     }}
                 >
                 </Box>
@@ -31,7 +58,7 @@ function WantMedia() {
             <div>
             <Link to="/library"><button style={{float: 'left', margin: 20, padding:12}}>Back</button></Link>
 
-                <h1> My Want List </h1>
+                <h1> My Media </h1>
             </div>
             <section>
             <Grid
@@ -42,180 +69,35 @@ function WantMedia() {
                 justifyContent={"center"}
                 alignItems="center"
                 >
-                <Grid item>
-                    <Card sx={{ maxWidth: 300 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
-                            alt="add media"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Shrek
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Movie
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 300 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://image.api.playstation.com/cdn/UP4415/CUSA02768_00/4E2BQXbe6ArXunsKvcyziEaT0pOryWIb.png"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Goat Simulator
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Game
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://m.media-amazon.com/images/I/81JWVTlPQ2L._AC_UF894,1000_QL80_.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Fight Club
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Movie
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://m.media-amazon.com/images/I/81jtrIKJd2L._AC_UF1000,1000_QL80_.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                The Da Vinci Code
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Book
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://upload.wikimedia.org/wikipedia/en/e/e0/Wii_Sports_Europe.jpg?20130209172832"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Wii Sports
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Game
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 300 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 268}}
-                            component="img"
-                            image="https://images-prod.dazeddigital.com/318/azure/dazed-prod/1140/6/1146850.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Goosebumps: The Haunted Mask
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Book
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://m.media-amazon.com/images/I/712aNdEk6-L._SY500_.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Spirited Away
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Movie
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://static-cdn.jtvnw.net/ttv-boxart/497057-272x380.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                Destiny 2
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Game
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
-                <Grid item>
-                    <Card sx={{ maxWidth: 450 }}>
-                        <CardActionArea>
-                            <CardMedia style = {{ height: 300}}
-                            component="img"
-                            image="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1398034300i/5107.jpg"
-                            alt="add to want list"
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="h5" component="div">
-                                The Catcher in the Rye
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Book
-                            </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                    </Card>
-                </Grid>
+                {
+                infoArr.map((m, i) => { 
+                    return(
+                        <Grid item>
+                        <Card sx={{ maxWidth: 300 }}>
+                            <CardActionArea>
+                            <Link to="/media-info" state={{media: m}}>
+
+                                <CardMedia style = {{ height: 300}}
+                                component="img"
+                                image={m.mediaImagePath}
+                                alt="media"
+                                />
+                                <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    {m.title}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    {m.type}
+                                </Typography>
+                                </CardContent>
+                                </Link>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>)     
+                })}
             </Grid>
             </section>
-        </main>
+        </div>
     );
   }
   
