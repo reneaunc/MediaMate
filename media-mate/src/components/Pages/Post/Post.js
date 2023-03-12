@@ -7,29 +7,15 @@ function Post (props) {
 
     return (
         <div className={styles.fullPost}>
-            <div className={styles.topInfo}>
-                <h3 className={styles.userName}> {props.curPost.username}  
-                    {props.curPost.mediaType === 'movie' ? " watched"
-                    : props.curPost.mediaType === 'book' ? " read"
-                    : props.curPost.mediaType === 'game' ? " played"
-                    : ""}:</h3>
-                <div className={styles.date}>{props.curPost.date}</div>
-            </div>
             <div className={styles.card}>
                 <img src={props.curPost.media.mediaImagePath} alt='' width="100%" />
                 <div className={styles.cardDetails}>
                     <h3 className={styles.title}>
-                    <Link to="/media-info" state={{media: props.curPost.media}}>
+                        {props.curPost.username} recently added <Link to="/media-info" state={{media: props.curPost.media}}>
                         {props.curPost.media.title}
-                        </Link></h3>
-                    <div>
-                        <div className={styles.rating}>
-                            {props.curPost.rating}
-                        </div>
-                        <p>{props.curPost.review}</p>
-                    </div>
+                    </Link> to their {props.curPost.library}.
+                    </h3>
                 </div>
-
             </div>
         </div>
     )

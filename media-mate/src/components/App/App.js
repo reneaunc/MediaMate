@@ -20,6 +20,7 @@ import ConsumedMedia from '../Pages/Screens/ConsumedMedia';
 const media = [
   {
     title: 'Shrek',
+    mediaType: 'movie',
     releaseYear: 2001,
     rating: 'PG',
     category: ['Animation', 'Adventure', 'Comedy'],
@@ -30,6 +31,7 @@ const media = [
   },
   {
     title: 'Everything Everywhere All at Once',
+    mediaType: 'movie',
     releaseYear: 2022,
     rating: 'R',
     category: ['Action', 'Adventure', 'Comedy'],
@@ -40,6 +42,7 @@ const media = [
   },
   {
     title: "Goat Simulator",
+    mediaType: "game",
     releaseYear: 2015,
     rating: 'T',
     category: ['Action', 'Adventure', 'Simulation'],
@@ -50,6 +53,7 @@ const media = [
   },
   {
     title: 'The Catcher in the Rye',
+    mediaType: 'book',
     releaseYear: 1951,
     rating: 'N/A',
     category: ['Fiction'],
@@ -60,42 +64,26 @@ const media = [
   }
 ]
 
-
 const feedPosts = [
   {
     username: "joy",
-    mediaType: "movie",
-    date: "12/10/22",
-    rating: 5,
-    review: "Wow Shrek really rocked my pants off. This movie really changed what it means to be green.",
     media: media[0],
+    library: 'wishlist',
   },
   {
-
     username: "ryan",
-    mediaType: "movie",
-    date: "12/20/22",
-    rating: 5,
-    review: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop pu",
     media: media[1],
-
+    library: 'consume',
   },
   {
     username: "andrew",
-    mediaType: "game",
-    date: "12/10/22",
-    rating: 2,
-    review: "Wow. Felt like a real goat and I didnt love it!",
     media: media[2],
-
+    library: 'consume',
   },
   {
     username: "Sharon",
-    mediaType: "book",
-    date: "2/03/22",
-    rating: 5.5,
-    review: "I'm like him frfr",
     media: media[3],
+    library: 'wishlist',
   }
 ]
 
