@@ -6,13 +6,15 @@
     overflow: hidden;
     margin-top: 0;
     width: 100%;
-
     background-color: white;
-
 }
 
 .card img {
     width: 50%;
+}
+
+.card h1 {
+    color: #000;
 }
 
 .cardDetails {
@@ -23,6 +25,7 @@
 
 .title {
     text-align: center;
+    font-size: xx-large;
 }
 
 
