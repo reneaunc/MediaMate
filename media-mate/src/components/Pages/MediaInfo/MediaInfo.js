@@ -14,11 +14,10 @@ function MediaInfo(props) {
   //const [media, setMedia] = useState({});
   const location = useLocation();
   //const { title, releaseYear, rating, description, communityReview, libraryStatus, mediaImagePath } = location.state;
-  const media = location.state;
-  console.log(media)
-  for (const key in media.media) {
-    if (media.media[key] == "" || media.media[key] == null){
-      media.media[key] = "N/A"
+  const {media, from} = location.state;
+  for (const key in media) {
+    if (media[key] === "" || media[key] == null){
+      media[key] = "N/A"
     }
   }
   // console.log(test)
@@ -42,36 +41,36 @@ function MediaInfo(props) {
         <Card raised={true} sx={{ maxWidth: 2000, maxHeight: 1000 }}>
           <CardMedia
             sx={{ height: 140 }}
-            image={media.media.mediaImagePath}
+            image={media.mediaImagePath}
             title="mediaCover"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {media.media.title}
+              {media.title}
             </Typography>
             <List>
               <ListItem>
-                <ListItemText primary="Rating" secondary={media.media.rating} />
+                <ListItemText primary="Rating" secondary={media.rating} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Description" secondary={media.media.description} />
+                <ListItemText primary="Description" secondary={media.description} />
               </ListItem>
               <ListItem>
                 <ListItemText
                   primary="Community Review"
-                  secondary={media.media.communityReview}
+                  secondary={media.communityReview}
                 />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Release Year" secondary={media.media.releaseYear} />
+                <ListItemText primary="Release Year" secondary={media.releaseYear} />
               </ListItem>
               <ListItem>
-                <ListItemText primary="Library Status" secondary={media.media.libraryStatus} />
+                <ListItemText primary="Library Status" secondary={media.libraryStatus} />
               </ListItem>
             </List>
           </CardContent>
           <CardActions>
-            <Link to="/browse">
+            <Link to={`/${from}`}>
               <Button size="small">Back</Button>
             </Link>
           </CardActions>

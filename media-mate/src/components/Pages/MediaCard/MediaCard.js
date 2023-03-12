@@ -51,7 +51,7 @@ class MediaCard extends React.Component {
             addUserWish.addUserWishlist(this.state.title, user.username)
             addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
-            addHistoryDB.addHistoryCollection(user.username, `add ${this.state.title} to wishlist`, this.state.title, this.state.releaseYear, this.state.rating, 
+            addHistoryDB.addHistoryCollection(user.username, `add wishlist`, this.state.title, this.state.releaseYear, this.state.rating, 
             this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
 
         }
@@ -65,7 +65,7 @@ class MediaCard extends React.Component {
         } else {
             removeUserWish.removeUserWishlist(this.state.title, user.username)
             removeUserConsume.removeUserConsumelist(this.state.title, user.username)
-            addHistoryDB.addHistoryCollection(user.username, `remove ${this.state.title} from consume and wish lists`, this.state.title, this.state.releaseYear, this.state.rating, 
+            addHistoryDB.addHistoryCollection(user.username, `remove`, this.state.title, this.state.releaseYear, this.state.rating, 
             this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
         }
         event.preventDefault();
@@ -79,7 +79,7 @@ class MediaCard extends React.Component {
             addUserConsume.addUserConsumelist(this.state.title, user.username)
             addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
-            addHistoryDB.addHistoryCollection(user.username, `add ${this.state.title} to consume list`, this.state.title, this.state.releaseYear, this.state.rating, 
+            addHistoryDB.addHistoryCollection(user.username, `add consume`, this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
 
         }
@@ -95,7 +95,7 @@ class MediaCard extends React.Component {
                       
                     }}>
                 <CardActionArea>
-                    <Link to="/media-info" state={{media: this.media}}>
+                    <Link to="/media-info" state={{media: this.media, from: "browse"}}>
                     <CardMedia
                         sx={{ height: 280 }}
                         image={this.state.mediaImagePath}
@@ -129,7 +129,7 @@ class MediaCard extends React.Component {
                     </Link>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={this.userAddWish} size="small">Add To Library</Button>
+                    <Button onClick={this.userAddWish} size="small">Add To Wishlist</Button>
                     <Button onClick={this.userAddConsumer} size="small">Add to Consumed List</Button>
                     <Button onClick={this.userRemoveWishConsume} size="small">Remove from Library</Button>
                 </CardActions>
