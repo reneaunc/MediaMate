@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import addUserWish from "../../../util/addUserWish";
 import addMediaDB from "../../../util/addMediaDB";
 import removeUserWish from "../../../util/removeUserWish";
+import addUserConsume from "../../../util/addUserConsume";
+import removeUserConsume from "../../../util/removeUserConsume";
 
 class MediaCard extends React.Component {
     constructor(props) {
@@ -36,7 +38,8 @@ class MediaCard extends React.Component {
         }
 
         this.userAddWish = this.userAddWish.bind(this)
-        this.userRemoveWish = this.userRemoveWish.bind(this)
+        this.userRemoveWishConsume = this.userRemoveWishConsume.bind(this)
+        this.userAddConsumer = this.userAddConsumer.bind(this)
     } 
 
     userAddWish(event) {
@@ -52,12 +55,26 @@ class MediaCard extends React.Component {
         event.preventDefault();
     }
 
-    userRemoveWish(event) {
+    userRemoveWishConsume(event) {
         const user = JSON.parse(localStorage.getItem('user'));
         if(!user) {
             alert("Please login or signup to remove your media choice")
         } else {
             removeUserWish.removeUserWishlist(this.state.title, user.username)
+            removeUserConsume.removeUserConsumelist(this.state.title, user.username)
+        }
+        event.preventDefault();
+    }
+
+    userAddConsumer(event) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(!user) {
+            alert("Please login or signup to save your media choice")
+        } else {
+            addUserConsume.addUserConsumelist(this.state.title, user.username)
+            addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
+                this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
+
         }
         event.preventDefault();
     }
@@ -106,7 +123,8 @@ class MediaCard extends React.Component {
                 </CardActionArea>
                 <CardActions>
                     <Button onClick={this.userAddWish} size="small">Add To Library</Button>
-                    <Button onClick={this.userRemoveWish} size="small">Remove from Library</Button>
+                    <Button onClick={this.userAddConsumer} size="small">Add to Consumed List</Button>
+                    <Button onClick={this.userRemoveWishConsume} size="small">Remove from Library</Button>
                 </CardActions>
             </Card>
             // <div className="MediaInfoCard">
