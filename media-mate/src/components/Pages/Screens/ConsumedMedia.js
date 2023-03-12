@@ -3,6 +3,8 @@ import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } fr
 import allMedias from '../../../util/getAllMedias';
 import allUsers from '../../../util/getAllUsers';
 import getUserWishlist from '../../../util/getUserWishlist';
+import { Link } from "react-router-dom";
+
 
 //test array
 const db = [{img: "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
@@ -71,6 +73,8 @@ function ConsumedMedia() {
             </div>
             </section>
             <div>
+            <Link to="/library"><button style={{float: 'left', margin: 20, padding:12}}>Back</button></Link>
+
                 <h1> My Media </h1>
             </div>
             <section>
