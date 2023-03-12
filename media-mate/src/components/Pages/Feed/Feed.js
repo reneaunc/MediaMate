@@ -5,13 +5,23 @@ import allUsers from "../../../util/getAllUsers";
 import allMedias from "../../../util/getAllMedias";
 //import oneMedia from "../../../util/getOneMedia";
 import getUserWishlist from "../../../util/getUserWishlist";
+import allHistories from "../../../util/getHistories";
 
 function Feed(props) {
-    const [users, setUsers] = useState([]);
-    const [medias, setMedias] = useState([]);
-    const [media, setMedia] = useState([]);
-    const [mediaTitles, setMediaTitles] = useState([]);
-    const [userMedia, setUserMedia] = useState([]);
+    //const [users, setUsers] = useState([]);
+    //const [medias, setMedias] = useState([]);
+    //const [media, setMedia] = useState([]);
+    //const [mediaTitles, setMediaTitles] = useState([]);
+    //const [userMedia, setUserMedia] = useState([]);
+    const [activities, setHistories] = useState([])
+
+    useEffect(() => {
+        allHistories.getAllHistories().then(activities => setHistories(activities))    
+        //allUsers.getAllUsers().then((users) => setUsers(users));
+        //allMedias.getAllMedias().then((medias) => setMedias(medias));
+        //fillFeedArr(users, medias).then((userMedia) => setUserMedia(userMedia));     
+    }, [])
+    /*
     function getRandomInt(max) {
         return Math.floor(Math.random() * max)
     }
@@ -68,7 +78,7 @@ function Feed(props) {
         allUsers.getAllUsers().then((users) => setUsers(users));
         allMedias.getAllMedias().then((medias) => setMedias(medias));
         fillFeedArr(users, medias).then((userMedia) => setUserMedia(userMedia));     
-    }, [])
+    }, [])*/
     
     
     
@@ -81,10 +91,13 @@ function Feed(props) {
     //         }
     //     }
     // }
-    console.log(`User Media: ${userMedia}`)
+    //console.log(`User Media: ${userMedia}`)
     return (
         <>
         <h1>Feed</h1>
+        <div>
+            {activities.map((history) => <p> {history.username} {history.action}</p>)}
+        </div>
         {/* <div>
             <p>{`${media.id}`} & {`${media.title}`}</p>
         </div>
