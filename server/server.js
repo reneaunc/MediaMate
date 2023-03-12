@@ -61,9 +61,41 @@ const mediaSchema = new mongoose.Schema({
     
 })
 
+const historySchema = new mongoose.Schema({
+    username: {
+        type: String,
+        
+    },
+    action: {
+        type: String
+    },
+    title: {
+        type: String,
+    },
+    releaseYear: {
+        type: String,
+    },
+    rating: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    communityReview: {
+        type: String
+    },
+    libraryStatus: {
+        type: String
+    },
+    mediaImagePath: {
+        type: String
+    }
+})
+
 //CREATE A MONGOOSE MODEL
 const User = mongoose.model("User", userSchema);
 const Media = mongoose.model("medias", mediaSchema);
+const History = mongoose.model("historys", historySchema)
 
 //CONNECT THE MONGODB USING THE MONGOOSE
 mongoose.set('strictQuery', false);
@@ -353,7 +385,7 @@ app.post('/api/addmediaitem', function (req, res) {
                     })
                 }
     
-                //If the user is successfully created, the code returns a success status and the newly created user.
+                //If the media is successfully created, the code returns a success status.
                 res.json({
                     status: 'success'
                 })
@@ -366,6 +398,68 @@ app.post('/api/addmediaitem', function (req, res) {
         }
     }) 
 })
+
+//Add user activity to history for feed
+app.post('/api/addhistory', function (req, res) { 
+    const {username, action, title, releaseYear, rating, description, communityReview, libraryStatus, mediaImagePath} = req.body
+
+    if(!title || !username) {
+        return res.json({
+            status: 'fail',
+            message: 'username or title is require'
+        });
+    }
+
+    History.create(req.body, function (err, result) {
+        if (err) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to connect to database'
+            })
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to create new history doc'
+            })
+        }
+
+        //If the history is successfully created, the code returns a success status.
+        res.json({
+            status: 'success'
+        })
+    })
+})
+
+//general route to get all user data
+app.get('/api/allhistory', function(req, res) {
+    History.find({}, function(err, histories) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Cannot connect to the database'
+            })
+        }
+
+        if(!histories) {
+            return res.json({
+                status: 'fail',
+                message: 'cannot get users collections'
+            })
+        }
+
+        res.json({
+            status: 'success',
+            data: {
+                histories
+            }
+        })
+    })
+})
+
+
+
 
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.

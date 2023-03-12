@@ -13,6 +13,7 @@ import addMediaDB from "../../../util/addMediaDB";
 import removeUserWish from "../../../util/removeUserWish";
 import addUserConsume from "../../../util/addUserConsume";
 import removeUserConsume from "../../../util/removeUserConsume";
+import addHistoryDB from "../../../util/addHistory";
 
 class MediaCard extends React.Component {
     constructor(props) {
@@ -50,6 +51,8 @@ class MediaCard extends React.Component {
             addUserWish.addUserWishlist(this.state.title, user.username)
             addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
+            addHistoryDB.addHistoryCollection(user.username, `add ${this.state.title} to wishlist`, this.state.title, this.state.releaseYear, this.state.rating, 
+            this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
 
         }
         event.preventDefault();
@@ -62,6 +65,8 @@ class MediaCard extends React.Component {
         } else {
             removeUserWish.removeUserWishlist(this.state.title, user.username)
             removeUserConsume.removeUserConsumelist(this.state.title, user.username)
+            addHistoryDB.addHistoryCollection(user.username, `remove ${this.state.title} from consume and wish lists`, this.state.title, this.state.releaseYear, this.state.rating, 
+            this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
         }
         event.preventDefault();
     }
@@ -73,6 +78,8 @@ class MediaCard extends React.Component {
         } else {
             addUserConsume.addUserConsumelist(this.state.title, user.username)
             addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
+                this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
+            addHistoryDB.addHistoryCollection(user.username, `add ${this.state.title} to consume list`, this.state.title, this.state.releaseYear, this.state.rating, 
                 this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
 
         }
