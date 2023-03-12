@@ -18,12 +18,12 @@ const oneMedia = {
             }
         } else {
           console.error(data.message);
-          alert(data.message);
+          //alert(data.message);
         }
       })
       .catch(err => {
         console.error(err);
-        alert(err);
+        //alert(err);
       });
     }
   };
