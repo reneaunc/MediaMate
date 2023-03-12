@@ -290,7 +290,7 @@ app.post('/api/removeuserconsume', function (req, res) {
         if(!result) {
             return res.json({
                 status: 'fail',
-                message: 'fail to update document'
+                message: 'title not in the wishlist array'
             });
         }
 

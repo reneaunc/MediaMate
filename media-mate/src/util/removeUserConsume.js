@@ -12,7 +12,11 @@ const removeUserConsume = {
         .then(data => {
           if (data.status === 'success') {
             console.log(data.data.resultObj)
-            alert("media added to consumelist")
+            if(data.data.resultObj === 1) {
+              alert("media remove from wishlist")
+            } else {
+              console.log("media not in wishlist")
+            }
           } else {
             console.error(data.message);
             alert(data.message);
