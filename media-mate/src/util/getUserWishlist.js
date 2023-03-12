@@ -1,5 +1,5 @@
 const getUserWishlist = {
-    getUserMedia(username) {
+    getUserWishlist(username) {
         return fetch(`/api/grabuser/${username}`, {
             method: 'GET',
             headers: {
