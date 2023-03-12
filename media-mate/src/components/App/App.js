@@ -16,6 +16,7 @@ import Profile from '../Pages/Profile/Profile';
 import Browse from '../Pages/Browse/Browse';
 import WantMedia from '../Pages/Screens/WantMedia';
 import ConsumedMedia from '../Pages/Screens/ConsumedMedia';
+import PageNotFound from '../Pages/PageNotFound/PageNotFound';
 
 const media = [
   {
@@ -127,6 +128,7 @@ const App = () => {
         <Route path='/media-info' element={<MediaInfo />}></Route>
         <Route path='/addmedia' element={<ConsumedMedia />}></Route>
         <Route path='/addwantlist' element={<WantMedia />}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
       </Routes>
       <LandingFooter />
     </div>
