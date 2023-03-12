@@ -157,6 +157,24 @@ app.get('/api/media/:title', function(req, res) {
     });
 });
 
+app.get('/api/grabuser/:username', function(req, res) {
+    const username = req.params.username;
+    User.findOne({username: username}, function(err, user) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'Failed to find user'
+            })
+        }
+        res.json({
+            status: 'success',
+            data: {
+                user
+            }
+        })
+    })
+})
+
 //Query to add item to user's wishlist array 
 app.post('/api/adduserwish', function (req, res) {
     const {username, title} = req.body
@@ -243,6 +261,7 @@ app.post('/api/adduserconsume', function (req, res) {
     }
 
     User.updateOne({username: username}, { $push: {consume: title}}, function(err, result) {
+
         if(err) {
             return res.json({
                 status: 'fail',

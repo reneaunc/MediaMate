@@ -16,7 +16,7 @@ import removeUserConsume from "../../../util/removeUserConsume";
 
 class MediaCard extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             id: props.curMedia.id,
             title: props.curMedia.title,

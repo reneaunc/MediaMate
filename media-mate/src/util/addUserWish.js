@@ -1,3 +1,4 @@
+
 const addUserWish = {
   
   addUserWishlist(title, username) {
@@ -22,6 +23,7 @@ const addUserWish = {
         console.error(err);
         alert(err);
       });
+
 
   }
 }
