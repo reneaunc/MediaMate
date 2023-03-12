@@ -1,54 +1,37 @@
 import { React, useEffect, useState } from 'react';
 import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
 import allMedias from '../../../util/getAllMedias';
-import allUsers from '../../../util/getAllUsers';
-import getUserWishlist from '../../../util/getUserWishlist';
-import { Link } from "react-router-dom";
+import getUserConsume from '../../../util/getUserConsume';
+import { Link,  } from "react-router-dom";
 
-
-//test array
-const db = [{img: "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
-            ,title: "Shrek",
-            type: "Movie"}]
 
 function ConsumedMedia() {
-//   const [media, setMedia] = useState({});
-//   const [myMedia, setMyMedia] = useState(db); //change to empty list []
-    // const [users, setUsers] = useState([]);
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+   
     const [medias, setMedias] = useState([]);
-    const [media, setMedia] = useState([]);
     const [mediaTitles, setMediaTitles] = useState([]);
-    const [userMedia, setUserMedia] = useState([]);
-    const [users, setUsers] = useState([]);
+
   
     useEffect(() => {
         allMedias.getAllMedias().then((medias) => setMedias(medias));
-        getUserWishlist.getUserWishlist("test").then((mediaTitles) => setMediaTitles(mediaTitles))
+        getUserConsume.getUserConsume(user.username).then((mediaTitles) => setMediaTitles(mediaTitles))
     }, [])
 
 
     const infoArr = []
-    //console.log(mediaTitles)
     const userList = mediaTitles.list
     for(const userMedia in userList){
         for(const media in medias){
-            console.log(media);
             if(medias[media].title === userList[userMedia]){
+                console.log(medias[media]);
                 infoArr.push(medias[media])
             }
         }
     }
   
-
-//   function handleChange(e) {
-//     setMedia(e.target.value);
-//   }
-
-//   function updateMedia(){
-//     setMyMedia([...myMedia, media]);
-//   }
-
-  return (
+    return (
         <div className="MyMedia">
             <section>
             <div style={{ width: '100%' }}>
@@ -92,9 +75,11 @@ function ConsumedMedia() {
                         <Grid item>
                         <Card sx={{ maxWidth: 300 }}>
                             <CardActionArea>
+                            <Link to="/media-info" state={{media: m}}>
+
                                 <CardMedia style = {{ height: 300}}
                                 component="img"
-                                image={m.img}
+                                image={m.mediaImagePath}
                                 alt="media"
                                 />
                                 <CardContent>
@@ -105,6 +90,7 @@ function ConsumedMedia() {
                                     {m.type}
                                 </Typography>
                                 </CardContent>
+                                </Link>
                             </CardActionArea>
                         </Card>
                     </Grid>)     
