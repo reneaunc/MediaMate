@@ -35,9 +35,9 @@ function Post (props) {
             <div className={styles.card}>
                 <img src={mediaObj.mediaImagePath} alt='' width="100%" />
                 <div className={styles.cardDetails}>
-                    <h3 className={styles.title}>
+                    <h1 className={styles.title}>
                         {message}
-                    </h3>
+                    </h1>
                 </div>
             </div>
             </Link>
