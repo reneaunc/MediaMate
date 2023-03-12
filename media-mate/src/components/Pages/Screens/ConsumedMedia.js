@@ -1,5 +1,8 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import {Box, Grid, Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material';
+import allMedias from '../../../util/getAllMedias';
+import allUsers from '../../../util/getAllUsers';
+import getUserWishlist from '../../../util/getUserWishlist';
 
 //test array
 const db = [{img: "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
@@ -7,16 +10,41 @@ const db = [{img: "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00Y
             type: "Movie"}]
 
 function ConsumedMedia() {
-  const [media, setMedia] = useState({});
-  const [myMedia, setMyMedia] = useState(db); //change to empty list []
+//   const [media, setMedia] = useState({});
+//   const [myMedia, setMyMedia] = useState(db); //change to empty list []
+    // const [users, setUsers] = useState([]);
+    const [medias, setMedias] = useState([]);
+    const [media, setMedia] = useState([]);
+    const [mediaTitles, setMediaTitles] = useState([]);
+    const [userMedia, setUserMedia] = useState([]);
+    const [users, setUsers] = useState([]);
+  
+    useEffect(() => {
+        allMedias.getAllMedias().then((medias) => setMedias(medias));
+        getUserWishlist.getUserWishlist("test").then((mediaTitles) => setMediaTitles(mediaTitles))
+    }, [])
 
-  function handleChange(e) {
-    setMedia(e.target.value);
-  }
 
-  function updateMedia(){
-    setMyMedia([...myMedia, media]);
-  }
+    const infoArr = []
+    //console.log(mediaTitles)
+    const userList = mediaTitles.list
+    for(const userMedia in userList){
+        for(const media in medias){
+            console.log(media);
+            if(medias[media].title === userList[userMedia]){
+                infoArr.push(medias[media])
+            }
+        }
+    }
+  
+
+//   function handleChange(e) {
+//     setMedia(e.target.value);
+//   }
+
+//   function updateMedia(){
+//     setMyMedia([...myMedia, media]);
+//   }
 
   return (
         <div className="MyMedia">
@@ -54,7 +82,8 @@ function ConsumedMedia() {
                 justifyContent={"center"}
                 alignItems="center"
                 >
-                {myMedia.map((m, i) => { 
+                {
+                infoArr.map((m, i) => { 
                     return(
                         <Grid item>
                         <Card sx={{ maxWidth: 300 }}>
