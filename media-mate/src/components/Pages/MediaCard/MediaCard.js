@@ -8,6 +8,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, List, ListItem, ListItemText } from "@mui/material";
 import { Link } from "react-router-dom";
+import addUserWish from "../../../util/addUserWish";
+import addMediaDB from "../../../util/addMediaDB";
+import removeUserWish from "../../../util/removeUserWish";
 
 class MediaCard extends React.Component {
     constructor(props) {
@@ -31,7 +34,34 @@ class MediaCard extends React.Component {
             libraryStatus: this.state.libraryStatus,
             mediaImagePath: this.state.mediaImagePath
         }
+
+        this.userAddWish = this.userAddWish.bind(this)
+        this.userRemoveWish = this.userRemoveWish.bind(this)
     } 
+
+    userAddWish(event) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(!user) {
+            alert("Please login or signup to save your media choice")
+        } else {
+            addUserWish.addUserWishlist(this.state.title, user.username)
+            addMediaDB.addMediaCollection(this.state.title, this.state.releaseYear, this.state.rating, 
+                this.state.description, this.state.communityReview, this.state.libraryStatus, this.state.mediaImagePath)
+
+        }
+        event.preventDefault();
+    }
+
+    userRemoveWish(event) {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(!user) {
+            alert("Please login or signup to remove your media choice")
+        } else {
+            removeUserWish.removeUserWishlist(this.state.title, user.username)
+        }
+        event.preventDefault();
+    }
+
     render() {
         return (
             <Card sx={
@@ -75,7 +105,8 @@ class MediaCard extends React.Component {
                     </Link>
                 </CardActionArea>
                 <CardActions>
-                    <Link to="/library"><Button size="small">Add To Library</Button></Link>
+                    <Button onClick={this.userAddWish} size="small">Add To Library</Button>
+                    <Button onClick={this.userRemoveWish} size="small">Remove from Library</Button>
                 </CardActions>
             </Card>
             // <div className="MediaInfoCard">

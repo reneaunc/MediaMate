@@ -35,7 +35,31 @@ const userSchema = new mongoose.Schema({
 })
 
 // media schema
-const mediaSchema = new mongoose.Schema()
+const mediaSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        unique: true
+    },
+    releaseYear: {
+        type: String,
+    },
+    rating: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    communityReview: {
+        type: String
+    },
+    libraryStatus: {
+        type: String
+    },
+    mediaImagePath: {
+        type: String
+    }
+    
+})
 
 //CREATE A MONGOOSE MODEL
 const User = mongoose.model("User", userSchema);
@@ -132,6 +156,197 @@ app.get('/api/media/:title', function(req, res) {
         });
     });
 });
+
+//Query to add item to user's wishlist array 
+app.post('/api/adduserwish', function (req, res) {
+    const {username, title} = req.body
+
+    if(!title || !username) {
+        return res.json({
+            status: 'fail',
+            message: 'title or user is missing'
+        });
+    }
+
+    User.updateOne({username: username}, { $push: {wishlist: title}}, function(err, result) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'error with the database connection'
+            });
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to update document'
+            });
+        }
+
+        const resultObj = result.modifiedCount
+
+        res.json({
+            status: 'success',
+            data: {
+                resultObj
+            }
+        });
+    })
+})
+
+//Query to remove item from a user's wishlist array
+app.post('/api/removeuserwish', function (req, res) {
+    const {username, title} = req.body
+
+    if(!title || !username) {
+        return res.json({
+            status: 'fail',
+            message: 'title or user is missing'
+        });
+    }
+
+    User.updateOne({username: username}, { $pull: {wishlist: title}}, function(err, result) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'error with the database connection'
+            });
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to update document'
+            });
+        }
+
+        const resultObj = result.modifiedCount
+
+        res.json({
+            status: 'success',
+            data: {
+                resultObj
+            }
+        });
+    })    
+})
+
+//Query to add item to user's consume array 
+app.post('/api/adduserconsume', function (req, res) {
+    const {username, title} = req.body
+
+    if(!title || !username) {
+        return res.json({
+            status: 'fail',
+            message: 'title or user is missing'
+        });
+    }
+
+    User.updateOne({username: username}, { $push: {consume: title}}, function(err, result) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'error with the database connection'
+            });
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'fail to update document'
+            });
+        }
+
+        const resultObj = result.modifiedCount
+
+        res.json({
+            status: 'success',
+            data: {
+                resultObj
+            }
+        });
+    })
+})
+
+//Query to remove item from user's consume list
+app.post('/api/removeuserconsume', function (req, res) {
+    const {username, title} = req.body
+
+    if(!title || !username) {
+        return res.json({
+            status: 'fail',
+            message: 'title or user is missing'
+        });
+    }
+
+    User.updateOne({username: username}, { $pull: {consume: title}}, function(err, result) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'error with the database connection'
+            });
+        }
+
+        if(!result) {
+            return res.json({
+                status: 'fail',
+                message: 'title not in the wishlist array'
+            });
+        }
+
+        const resultObj = result.modifiedCount
+
+        res.json({
+            status: 'success',
+            data: {
+                resultObj
+            }
+        });
+    })    
+})
+
+
+
+//Add new media item to media collection database from user add item to library
+app.post('/api/addmediaitem', function (req, res) { 
+    const {title, releaseYear, rating, description, communityReview, libraryStatus, mediaImagePath} = req.body
+
+    if(!title) {
+        return res.json({
+            status: 'fail',
+            message: 'title is require'
+        });
+    }
+
+    Media.findOne({ title: title }, function(err, media) {
+        if(err) {
+            return res.json({
+                status: 'fail',
+                message: 'database connection fail'
+            });
+        }
+        if(!media) {
+            Media.create(req.body, function (err, result) {
+                if (err|| !result) {
+                    return res.json({
+                        status: 'fail',
+                        message: 'fail to create new media doc'
+                    })
+                }
+    
+                //If the user is successfully created, the code returns a success status and the newly created user.
+                res.json({
+                    status: 'success'
+                })
+            })
+        } else {
+            return res.json({
+                status: 'fail',
+                message: 'media already exist'
+            });
+        }
+    }) 
+})
 
 app.post('/api/signup', function (req, res) {
      //Extract the required fields (username, email, password, and confirmPassword) from the request body and store them in separate variables.

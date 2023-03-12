@@ -124,8 +124,8 @@ const App = () => {
         dispatch(login({
           username: user?.username || '',
           email: user?.email || '',
-          consume: user?.consume || null,
-          wishlist: user?.wishlist || null
+          //consume: user?.consume || [],
+          //wishlist: user?.wishlist || []
         }))
         if (user?.username) {
           navigate("/profile", { replace: true });
