@@ -92,12 +92,13 @@ function Feed(props) {
     //     }
     // }
     //console.log(`User Media: ${userMedia}`)
+    
     return (
         <>
         <h1>Feed</h1>
-        <div>
-            {activities.map((history) => <p> {history.username} {history.action}</p>)}
-        </div>
+        {/* <div>
+            {activities.slice(-4).map((history) => console.log(history))}
+        </div> */}
         {/* <div>
             <p>{`${media.id}`} & {`${media.title}`}</p>
         </div>
@@ -114,8 +115,8 @@ function Feed(props) {
             {/* {userMedia.list[userMedia.list.length - 1]} */}
         </div>
         <div className={styles.feedArea}>
-            {props.posts.map((cur)=> {
-                return <Post curPost={cur} />
+            {activities.slice(-4).map((history)=> {
+                return <Post curPost={history} />
             })}
         </div>
 

@@ -4,16 +4,24 @@ import { Link } from "react-router-dom";
 
 function Post (props) {
     
-
+    const mediaObj = {
+        title: props.curPost.title, 
+        releaseYear: props.curPost.releaseYear,
+        rating: "N/A",
+        description: props.curPost.description,
+        communityReview: props.curPost.communityReview,
+        libraryStatus: props.curPost.libraryStatus,
+        mediaImagePath: props.curPost.mediaImagePath
+    }
     return (
         <div className={styles.fullPost}>
             <div className={styles.card}>
-                <img src={props.curPost.media.mediaImagePath} alt='' width="100%" />
+                <img src={mediaObj.mediaImagePath} alt='' width="100%" />
                 <div className={styles.cardDetails}>
                     <h3 className={styles.title}>
-                        {props.curPost.username} recently added <Link to="/media-info" state={{media: props.curPost.media}}>
-                        {props.curPost.media.title}
-                    </Link> to their {props.curPost.library}.
+                        {props.curPost.username} recently added <Link to="/media-info" state={{media: mediaObj}}>
+                        {mediaObj.title}
+                    </Link> to their {props.curPost.action}.
                     </h3>
                 </div>
             </div>
