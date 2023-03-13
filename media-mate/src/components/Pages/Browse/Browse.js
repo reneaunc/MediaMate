@@ -6,8 +6,7 @@ import Movies from "../../../util/Movies"
 import Books from "../../../util/Books";
 import Games from "../../../util/Games";
 
-function Browse(props) {
-    console.log(props);
+function Browse() {
     const [mediaResult, handleMediaResult] = useState([]);
 
     const handleSubmit = async (term, mediaSelection)=> {

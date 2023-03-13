@@ -109,7 +109,8 @@ const App = () => {
       }, 500)
     }
   })
-
+  const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user)
   return (
     <div className="App">
       <LandingNavBar />
@@ -122,9 +123,9 @@ const App = () => {
         } />
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Registration />}></Route>
-        <Route path='/library' element={<Library />}></Route>
-        <Route path='/feed' element={<Feed posts={feedPosts} />}></Route>
-        <Route path='/browse' element={<Browse cards={media}/>}></Route>
+        <Route path='/library' element={user ? <Library /> : <Login />}></Route>
+        <Route path='/feed' element={<Feed />}></Route>
+        <Route path='/browse' element={<Browse />}></Route>
         <Route path='/media-info' element={<MediaInfo />}></Route>
         <Route path='/addmedia' element={<ConsumedMedia />}></Route>
         <Route path='/addwantlist' element={<WantMedia />}></Route>
